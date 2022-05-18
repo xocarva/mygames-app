@@ -1,5 +1,11 @@
+import './Footer.css';
+
 const Footer = () => {
-    return <footer>Xoán Carneiro 2022</footer>
-}
+    return (
+        <footer>
+            <span>Xoán Carneiro 2022</span>
+        </footer>
+    );
+};
 
 export default Footer;
