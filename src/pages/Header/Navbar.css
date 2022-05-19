@@ -1,0 +1,118 @@
+.burger-menu {
+    width: 60px;
+    height: 45px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.burger-menu span {
+    display: block;
+    position: absolute;
+    height: 7px;
+    width: 100%;
+    background: white;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+
+.burger-menu span:nth-child(1) {
+    top: 0px;
+}
+
+.burger-menu span:nth-child(2),.burger-menu span:nth-child(3) {
+    top: 18px;
+}
+
+.burger-menu span:nth-child(4) {
+    top: 36px;
+}
+
+.burger-menu.opened span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+.burger-menu.opened span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.burger-menu.opened span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.burger-menu.opened span:nth-child(4) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+.nav-menu {
+    background-color: var(--irresistible);
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: 1s;
+}
+
+.nav-menu.active {
+    right: 0;
+    transition: 350ms;
+}
+
+.nav-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+}
+
+.nav-text a {
+    color: white;
+    text-decoration: none;
+    font-size: calc(1.2vw + 1.2vh + 1rem);
+}
+
+.nav-text a:hover {
+    text-decoration: underline;
+}
+
+.nav-menu-items {
+    margin-top: 5rem;
+    width: 100%;
+}
+
+.navbar-toggle {
+    list-style: none;
+    text-align: right;
+    margin-right: 3rem;
+
+}
+
+.navbar-toggle .close-icon {
+    font-size: calc(2.2vw + 2.2vh + 2rem);
+    cursor: pointer;
+}

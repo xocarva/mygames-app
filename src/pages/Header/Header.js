@@ -1,13 +1,18 @@
-import { useUser } from '../../hooks';
-import './Header.css';
+import { useUser } from "../../hooks";
+import Navbar from "./Navbar";
+import "./Header.css";
+
 
 const Header = () => {
 
     const user = useUser();
 
     return (
-        <header>{user ? user.data.name : 'Sin usuario'}</header>
-
+        <header>
+            <h1>MyGames 🎮</h1>
+            <span>{ user?.data.name }</span>
+            <Navbar />
+        </header>
     );
 };
 
