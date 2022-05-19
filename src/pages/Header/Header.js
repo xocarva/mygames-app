@@ -8,7 +8,7 @@ const Header = () => {
     const user = useUser();
 
     return (
-        <header>
+        <header className="main-header">
             <h1>MyGames 🎮</h1>
             <span>{ user?.data.name }</span>
             <Navbar />

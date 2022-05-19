@@ -26,6 +26,7 @@ const Navbar = () => {
                 <ul className='nav-menu-items' >
                     <li className='nav-text'><Link to="/" onClick={ toggleSidebar }>Home</Link></li>
                     {!user && <li className='nav-text'><Link to="/register" onClick={ toggleSidebar }>Register</Link></li>}
+                    {user && <li className='nav-text'><Link to="/mycollection" onClick={ toggleSidebar }>My collection</Link></li>}
                     {user && <li className='nav-text'><Link to="/" onClick={() => dispatch({ type: 'logout' })}>Logout</Link></li>}
                 </ul>
             </nav>

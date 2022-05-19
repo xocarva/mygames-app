@@ -1,0 +1,26 @@
+.my-collection-main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.my-collection {
+    flex-grow: 1;
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+.copies-grid {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1rem;
+}
+
+.my-collection-title {
+    text-align: center;
+}
+
+.filters {
+    color: black;
+    background-color: var(--blue-green);
+}

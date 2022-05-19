@@ -9,6 +9,9 @@ const useFetch = ( url, defaultValue = null ) => {
     const [ data, setData ] = useState( defaultValue );
     const [ error, setError ] = useState( null );
     const [ isLoading, setIsLoading ] = useState( false );
+    const [ meta, setMeta ] = useState( null );
+    const [ links, setLinks ] = useState( null );
+
 
     useEffect(() => {
 
@@ -25,8 +28,6 @@ const useFetch = ( url, defaultValue = null ) => {
             if (user?.token) {
               opts.headers = {
                 'Authorization': 'Bearer ' + user.token,
-                // 'Accept': 'application/json',
-                // 'Content-Type': 'application/json',
                 }
             }
 
@@ -43,6 +44,8 @@ const useFetch = ( url, defaultValue = null ) => {
 
             setStatus( json.status );
             setData( json.data );
+            setMeta( json.meta );
+            setLinks( json.links );
             setIsLoading( false );
         };
 
@@ -50,7 +53,7 @@ const useFetch = ( url, defaultValue = null ) => {
 
     }, [ url, user?.token ] );
 
-    return { status, data, error, isLoading };
+    return { status, data, error, isLoading, meta, links };
 };
 
 export default useFetch;
