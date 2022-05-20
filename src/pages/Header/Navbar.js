@@ -14,6 +14,11 @@ const Navbar = () => {
 
     const toggleSidebar = () => setSidebar( prev => !prev );
 
+    const handleLogout = () => {
+        dispatch({ type: 'logout' });
+        toggleSidebar();
+    };
+
     return (
         <>
             <div className={ sidebar ? 'burger-menu opened' : 'burger-menu' } onClick={ toggleSidebar }>
@@ -27,7 +32,8 @@ const Navbar = () => {
                     <li className='nav-text'><Link to="/" onClick={ toggleSidebar }>Home</Link></li>
                     {!user && <li className='nav-text'><Link to="/register" onClick={ toggleSidebar }>Register</Link></li>}
                     {user && <li className='nav-text'><Link to="/user/copies" onClick={ toggleSidebar }>My collection</Link></li>}
-                    {user && <li className='nav-text'><Link to="/" onClick={() => dispatch({ type: 'logout' })}>Logout</Link></li>}
+                    {user && user?.data.admin && <li className='nav-text'><Link to="/admin" onClick={ toggleSidebar }>Admin</Link></li>}
+                    {user && <li className='nav-text'><Link to="/"  onClick={ handleLogout }>Logout</Link></li>}
                 </ul>
             </nav>
         </>

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useFetch } from "../../hooks";
-import { Loading, CopiesGridItem, Pagination } from "../../components";
+import { useFetch } from "../../../hooks";
+import { Loading, CopiesGridItem, Pagination } from "../../../components";
 import "./CopiesGrid.css";
 
 const CopiesGrid = ({ url }) => {

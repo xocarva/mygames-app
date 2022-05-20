@@ -1,8 +1,10 @@
-import CopiesGridItem from "./CopiesGridItem/CopiesGridItem";
+import CopiesGridItem from "./Copies/CopiesGridItem/CopiesGridItem";
 import Loading from "./Loading/Loading";
-import CopiesGrid from "./CopiesGrid/CopiesGrid";
-import CopiesFilters from "./CopiesFilters/CopiesFilters";
+import CopiesGrid from "./Copies/CopiesGrid/CopiesGrid";
+import CopiesFilters from "./Copies/CopiesFilters/CopiesFilters";
 import Pagination from "./Pagination/Pagination";
+import UserGridItem from "./Users/UserGridItem";
+import UsersGrid from "./Users/UsersGrid";
 
 export {
     CopiesGridItem,
@@ -10,4 +12,6 @@ export {
     CopiesGrid,
     CopiesFilters,
     Pagination,
+    UserGridItem,
+    UsersGrid,
 };
