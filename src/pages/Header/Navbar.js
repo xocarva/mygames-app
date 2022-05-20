@@ -7,10 +7,10 @@ import "./Navbar.css";
 
 const Navbar = () => {
 
-    const [ sidebar, setSidebar ] = useState ( false );
-
     const user = useUser();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const [ sidebar, setSidebar ] = useState ( false );
 
     const toggleSidebar = () => setSidebar( prev => !prev );
 
@@ -26,7 +26,7 @@ const Navbar = () => {
                 <ul className='nav-menu-items' >
                     <li className='nav-text'><Link to="/" onClick={ toggleSidebar }>Home</Link></li>
                     {!user && <li className='nav-text'><Link to="/register" onClick={ toggleSidebar }>Register</Link></li>}
-                    {user && <li className='nav-text'><Link to="/mycollection" onClick={ toggleSidebar }>My collection</Link></li>}
+                    {user && <li className='nav-text'><Link to="/user/copies" onClick={ toggleSidebar }>My collection</Link></li>}
                     {user && <li className='nav-text'><Link to="/" onClick={() => dispatch({ type: 'logout' })}>Logout</Link></li>}
                 </ul>
             </nav>

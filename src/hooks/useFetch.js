@@ -17,15 +17,9 @@ const useFetch = ( url, defaultValue = null ) => {
 
         const loadData = async () => {
 
-            const opts = {
-                headers : {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                }
+            const opts = {}
 
-            }
-
-            if (user?.token) {
+            if ( user?.token ) {
               opts.headers = {
                 'Authorization': 'Bearer ' + user.token,
                 }

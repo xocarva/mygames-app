@@ -1,8 +1,3 @@
-.my-collection-main {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .my-collection {
     flex-grow: 1;
     margin: 0 auto;
@@ -18,9 +13,4 @@
 
 .my-collection-title {
     text-align: center;
-}
-
-.filters {
-    color: black;
-    background-color: var(--blue-green);
 }
