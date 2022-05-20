@@ -14,3 +14,8 @@
 .my-collection-title {
     text-align: center;
 }
+
+.page-button {
+    background-color: white;
+    cursor: pointer;
+}

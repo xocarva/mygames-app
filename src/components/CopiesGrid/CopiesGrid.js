@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { useFetch } from "../../hooks";
-import CopiesGridItem from "../CopiesGridItem/CopiesGridItem";
-import Loading from "../Loading/Loading";
+import { Loading, CopiesGridItem, Pagination } from "../../components";
 import "./CopiesGrid.css";
 
 const CopiesGrid = ({ url }) => {
 
     const { isLoading, data: copies } = useFetch( url );
+
+    const [page, setPage] = useState(0);
+    const perPage = 10
+    const totalPages = Math.ceil(copies?.length / perPage)
 
     return (
         <section className="my-collection">
@@ -13,15 +17,14 @@ const CopiesGrid = ({ url }) => {
             { isLoading && < Loading /> }
             { !isLoading && copies && copies.length > 0 &&
                 <section className="copies-grid">
-                    { copies.map( copy =>
+                    { copies.slice( page * perPage, ( page + 1 ) * perPage ).map( copy =>
                         <CopiesGridItem key={ copy.id}  copy={ copy } />
                     )}
                 </section>
             }
-            <button className="next-page">prev</button>
-            <button className="prev-page">next</button>
+            { !isLoading && copies?.length > 0 && <Pagination page={ page } setPage={ setPage } totalPages={ totalPages } /> }
         </section>
-    )
+    );
 
 };
 
