@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { UsersGrid } from "../../../components";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL
-
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const AdminUsers = () => {
 

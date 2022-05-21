@@ -53,7 +53,6 @@ const CopiesFilters = ({ setUrl }) => {
             urlQuery += `studio=${ studio }`
         }
 
-        console.log(urlQuery);
         setUrl( urlQuery );
     };
 

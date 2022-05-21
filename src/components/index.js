@@ -5,6 +5,7 @@ import CopiesFilters from "./Copies/CopiesFilters/CopiesFilters";
 import Pagination from "./Pagination/Pagination";
 import UserGridItem from "./Users/UserGridItem";
 import UsersGrid from "./Users/UsersGrid";
+import EditUser from "./Users/EditUser";
 
 export {
     CopiesGridItem,
@@ -14,4 +15,5 @@ export {
     Pagination,
     UserGridItem,
     UsersGrid,
+    EditUser,
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useUser from "./useUser";
 
-const useFetch = ( url, defaultValue = null ) => {
+const useFetch = ( url, method = 'GET', body = null, defaultValue = null ) => {
 
     const user = useUser();
 
@@ -17,7 +17,10 @@ const useFetch = ( url, defaultValue = null ) => {
 
         const loadData = async () => {
 
-            const opts = {}
+            const opts = {
+                method: method,
+                body: body,
+            };
 
             if ( user?.token ) {
               opts.headers = {
@@ -45,7 +48,7 @@ const useFetch = ( url, defaultValue = null ) => {
 
         loadData();
 
-    }, [ url, user?.token ] );
+    }, [ url, method, body, user?.token ] );
 
     return { status, data, error, isLoading, meta, links };
 };
