@@ -13,6 +13,7 @@
     margin-right: 1.5rem;
     display: flex;
     gap: 0.5rem;
+    align-items: center;
 }
 
 .edit-user-form {

@@ -8,6 +8,7 @@ import UsersGrid from "./Users/UsersGrid";
 import EditUser from "./Users/EditUser";
 import Login from "./Login/Login";
 import Welcome from "./Welcome/Welcome";
+import Switch from "./Switch/Switch";
 
 export {
     CopiesGridItem,
@@ -20,4 +21,5 @@ export {
     EditUser,
     Login,
     Welcome,
+    Switch,
 };

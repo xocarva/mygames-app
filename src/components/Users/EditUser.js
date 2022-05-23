@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../../hooks";
+import Switch from "../Switch/Switch";
 import "./EditUser.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -30,7 +31,7 @@ const EditUser = ({ id }) => {
                 const { data:user } = await res.json()
 
                 setEditedUser( user );
-                setNameHolder( user.email );
+                setNameHolder( user.name );
                 setEmailHolder( user.email );
                 setAdmin( !!user.admin );
 
@@ -42,8 +43,6 @@ const EditUser = ({ id }) => {
         loadData();
 
     },[ id, loggedUser ]);
-
-
 
 
     const handleSubmit = async ( e ) => {
@@ -84,7 +83,7 @@ const EditUser = ({ id }) => {
 
     };
 
-    const handleAdmin = async ( e ) => {
+    const handleAdmin = async () => {
         const res = await fetch( SERVER_URL + `/users/${ id }`, {
             method: 'PATCH',
             headers: {
@@ -109,8 +108,8 @@ const EditUser = ({ id }) => {
         <div className="edit-user">
             { editedUser && loggedAdmin &&
                 <div className="edit-admin">
-                    <label htmlFor="admin-checkbox">Admin</label>
-                    <input id="admin-checkbox" type="checkbox" checked={ admin } onChange={ handleAdmin } />
+                    <span>Admin</span>
+                    <Switch value={ admin } onClick={ handleAdmin } />
                 </div>
             }
             { editedUser &&
@@ -129,7 +128,7 @@ const EditUser = ({ id }) => {
                             <input id="edit-password" type="password" placeholder="********" value={ password } onChange={ ( e ) => setPassword( e.target.value ) }/>
                         </label>
                     </div>
-                    <button className="save-edit">Save</button>
+                    <button className="save-edit">Edit</button>
                 </form>
             }
         </div>

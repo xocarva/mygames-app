@@ -7,7 +7,9 @@ const AdminUsers = () => {
     return (
         <main className="users-main">
             <h2 className="users-title">Users</h2>
-            <Link to="/admin/users/create" className="new-user">Create New User</Link>
+            <div className="new-user-container">
+                <Link to="/admin/users/create" className="new-user">New User ➕</Link>
+            </div>
             <UsersGrid />
         </main>
     );
