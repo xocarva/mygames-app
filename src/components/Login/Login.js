@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSetUser } from "../../hooks";
+import "./Login.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
-
 
 const Login = () => {
 
@@ -35,15 +35,18 @@ const Login = () => {
 
     return (
         <>
-            <form onSubmit={ handleSubmit }>
+            <form className="login-form" onSubmit={ handleSubmit }>
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" value={ email } onChange={ e => setEmail( e.target.value ) } />
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" value={ password } onChange={ e => setPassword( e.target.value ) } />
                 <button className="login-button">Login</button>
             </form>
-            <span>Not registered?</span>
-            <Link to="/register" >Register now</Link>
+            <div className="not-registered">
+                <span>Not registered?</span>
+                <Link to="/register" >Register now</Link>
+            </div>
+
         </>
     );
 };

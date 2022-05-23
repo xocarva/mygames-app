@@ -1,0 +1,26 @@
+.users-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.users-main .users-title {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.new-user{
+    text-decoration: none;
+    background-color: var(--blue-background);
+    color: var(--primary-color);
+    padding: 1rem;
+    width: 90vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.new-user:hover{
+    background-color: var(--secondary-color);
+    color: whitesmoke;
+}
+

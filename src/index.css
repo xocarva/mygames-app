@@ -1,11 +1,17 @@
 @import './styles//normalize.css';
 
 :root {
-  --light-cyan: rgb(221, 255, 247);
+
+  --primary-color: #2D2926;
+  --secondary-color: #CE4A7E;
+  --white-background: #FCFAFA;
+  --gray-background: #C8D3D5;
+  --blue-background: #A4B8C4;
+  /* --light-cyan: rgb(221, 255, 247);
   --blue-green: rgb(147, 225, 216);
   --vivid-tangerine: rgb(255, 166, 158);
   --irresistible:rgb(170, 68, 101);
-  --russian-violet:rgb(70, 34, 85);
+  --russian-violet:rgb(70, 34, 85); */
 }
 
 
@@ -14,13 +20,3 @@
   box-sizing: border-box;
 }
 
-#app {
-  height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-
-main {
-  color: white;
-  background-color: var(--russian-violet);
-}

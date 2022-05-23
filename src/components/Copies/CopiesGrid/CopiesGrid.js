@@ -7,9 +7,9 @@ const CopiesGrid = ({ url }) => {
 
     const { isLoading, data: copies } = useFetch( url );
 
-    const [page, setPage] = useState(0);
-    const perPage = 10
-    const totalPages = Math.ceil(copies?.length / perPage)
+    const [ page, setPage ] = useState( 0 );
+    const perPage = 10;
+    const totalPages = Math.ceil( copies?.length / perPage );
 
     return (
         <section className="my-collection">

@@ -1,0 +1,32 @@
+.main-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-admin h2 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.main-admin nav {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1rem;
+    width: 90vw;
+}
+
+.main-admin nav a {
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 2rem;
+    background-color: var(--gray-background);
+
+}
+.main-admin nav a:hover {
+    background-color: var(--secondary-color);
+    font-weight: bold;
+}

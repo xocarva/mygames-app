@@ -1,13 +1,14 @@
 import { useUser } from "../../hooks";
-import { Login } from "../Login";
+import { Login, Welcome } from "../../components/";
+import "./Home.css";
 
 const Home = () => {
 
     const user = useUser();
 
     return (
-        <main>
-            {user ? <p>Welcome, { user.data.name } 🕹️👾</p> : <Login />}
+        <main className="home-main">
+            {user ? <Welcome user={ user } /> : <Login />}
         </main>
     );
 };

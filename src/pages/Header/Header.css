@@ -1,18 +1,24 @@
 .main-header {
-    color: white;
-    background-color: var(--irresistible);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 2rem;
-    padding: 0 3rem;
+    padding: 1rem 3rem;
 }
 
-h1 {
+.main-header .header-title {
     text-align: center;
     flex-grow: 1;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.main-header a h1 {
+    font-size: calc(2.4vw + 2.4vh + .6vmin);
 }
 
 .main-header > span {
-    font-size: calc(1vw + 1vh + .6vmin);
+    font-size: calc(1.2vw + 1.2vh + .6vmin);
 }

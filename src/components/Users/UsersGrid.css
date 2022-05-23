@@ -1,0 +1,6 @@
+.users-grid {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

@@ -11,7 +11,7 @@
     position: absolute;
     height: 7px;
     width: 100%;
-    background: white;
+    background: var(--primary-color);
     border-radius: 9px;
     opacity: 1;
     left: 0;
@@ -23,6 +23,10 @@
     -moz-transition: 0.3s ease-in-out;
     -o-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
+}
+
+.burger-menu:hover span {
+    background-color: whitesmoke;
 }
 
 .burger-menu span:nth-child(1) {
@@ -64,7 +68,7 @@
 }
 
 .nav-menu {
-    background-color: var(--irresistible);
+    background-color: var(--secondary-color);
     width: 100%;
     max-width: 600px;
     height: 100vh;
@@ -91,13 +95,14 @@
 }
 
 .nav-text a {
-    color: white;
+    color: var(--primary-color);
     text-decoration: none;
     font-size: calc(1.2vw + 1.2vh + 1rem);
 }
 
 .nav-text a:hover {
     text-decoration: underline;
+    color: whitesmoke;
 }
 
 .nav-menu-items {

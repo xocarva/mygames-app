@@ -1,15 +1,14 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import { UsersGrid } from "../../../components";
-
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+import "./AdminUsers.css";
 
 const AdminUsers = () => {
 
-    const [ url, setUrl ] = useState( SERVER_URL + '/users' );
-
     return (
         <main className="users-main">
-            <UsersGrid url={ url } />
+            <h2 className="users-title">Users</h2>
+            <Link to="/admin/users/create" className="new-user">Create New User</Link>
+            <UsersGrid />
         </main>
     );
 };

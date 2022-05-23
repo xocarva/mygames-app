@@ -1,0 +1,33 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.login-form input {
+    text-align: center;
+    width: 20rem;
+}
+
+.not-registered {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.not-registered a {
+    color: var(--secondary-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.not-registered a:hover {
+    text-decoration: underline;
+}
+
+.login-form .login-button {
+    cursor: pointer;
+}
+
+

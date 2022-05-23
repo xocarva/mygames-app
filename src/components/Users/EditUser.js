@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../../hooks";
-import Loading from "../Loading/Loading";
+import "./EditUser.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
 
 const EditUser = ({ id }) => {
 
     const loggedUser = useUser();
 
+    const loggedAdmin = !!loggedUser?.data?.admin;
+
     const [ editedUser, setEditedUser ] = useState('');
-    const [ newData, setNewData ] = useState('');
+    const [ nameHolder, setNameHolder ] = useState('');
+    const [ emailHolder, setEmailHolder ] = useState('');
+
+    const [ name, setName ] = useState('');
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ admin, setAdmin ] = useState( false );
 
     useEffect( () => {
         const loadData = async () => {
@@ -20,8 +27,13 @@ const EditUser = ({ id }) => {
                         'Authorization': 'Bearer ' + loggedUser?.token
                     }
                 })
-                const { data } = await res.json()
-                setEditedUser(data)
+                const { data:user } = await res.json()
+
+                setEditedUser( user );
+                setNameHolder( user.email );
+                setEmailHolder( user.email );
+                setAdmin( !!user.admin );
+
             } catch(error) {
                 console.log(error);
             }
@@ -29,11 +41,9 @@ const EditUser = ({ id }) => {
         }
         loadData();
 
-    },[ loggedUser, newData, id ]);
+    },[ id, loggedUser ]);
 
-    const [ name, setName ] = useState('');
-    const [ email, setEmail ] = useState('');
-    const [ password, setPassword ] = useState('');
+
 
 
     const handleSubmit = async ( e ) => {
@@ -62,9 +72,9 @@ const EditUser = ({ id }) => {
                 setName('');
                 setEmail('');
                 setPassword('');
-                setNewData(user)
-
-                console.log(user)
+                setNameHolder( user.name );
+                setEmailHolder( user.email );
+                setAdmin( !!user.admin );
 
             } else {
                 const { error } = await res.json();
@@ -74,24 +84,55 @@ const EditUser = ({ id }) => {
 
     };
 
+    const handleAdmin = async ( e ) => {
+        const res = await fetch( SERVER_URL + `/users/${ id }`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': 'Bearer ' + loggedUser?.token,
+                Accept:'application/json',
+                    'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ admin: !admin }),
+        });
+
+        if(res.ok) {
+            const { data:user } = await res.json();
+            console.log(user)
+            setAdmin( !! user.admin );
+        } else {
+            const { error } = await res.json();
+            console.log(error)
+        }
+    }
+
     return (
-        <main>
-            { !editedUser && <Loading /> }
-            { editedUser &&
-                <>
-                    <h4>edit user {id}</h4>
-                    <form className="edit-user" onSubmit={ handleSubmit }>
-                        <label htmlFor="edit-name">Name</label>
-                        <input id="edit-name" type="text" placeholder={ editedUser.name } value={ name } onChange={ ( e ) => setName( e.target.value ) }/>
-                        <label htmlFor="edit-email">Email</label>
-                        <input id="edit-email" type="email" placeholder={ editedUser.email } value={ email } onChange={ ( e ) => setEmail( e.target.value ) }/>
-                        <label htmlFor="edit-password">Password</label>
-                        <input id="edit-password" type="password" placeholder="********" value={ password } onChange={ ( e ) => setPassword( e.target.value ) }/>
-                        <button className="save-edit">Save</button>
-                    </form>
-                </>
+        <div className="edit-user">
+            { editedUser && loggedAdmin &&
+                <div className="edit-admin">
+                    <label htmlFor="admin-checkbox">Admin</label>
+                    <input id="admin-checkbox" type="checkbox" checked={ admin } onChange={ handleAdmin } />
+                </div>
             }
-        </main>
+            { editedUser &&
+                <form className="edit-user-form" onSubmit={ handleSubmit }>
+                    <div className="form-inputs">
+                        <label htmlFor="edit-name">
+                            Name
+                            <input id="edit-name" type="text" placeholder={ nameHolder } value={ name } onChange={ ( e ) => setName( e.target.value ) }/>
+                        </label>
+                        <label htmlFor="edit-email">
+                            Email
+                            <input id="edit-email" type="email" placeholder={ emailHolder } value={ email } onChange={ ( e ) => setEmail( e.target.value ) }/>
+                        </label>
+                        <label htmlFor="edit-password">
+                            Password
+                            <input id="edit-password" type="password" placeholder="********" value={ password } onChange={ ( e ) => setPassword( e.target.value ) }/>
+                        </label>
+                    </div>
+                    <button className="save-edit">Save</button>
+                </form>
+            }
+        </div>
     );
 };
 

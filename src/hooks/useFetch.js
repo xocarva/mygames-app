@@ -26,6 +26,9 @@ const useFetch = ( url, method = 'GET', body = null, defaultValue = null ) => {
               opts.headers = {
                 'Authorization': 'Bearer ' + user.token,
                 }
+            } else opts.headers = {
+                Accept:'application/json',
+                'Content-Type': 'application/json'
             }
 
             setIsLoading( true );

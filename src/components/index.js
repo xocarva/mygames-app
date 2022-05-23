@@ -6,6 +6,8 @@ import Pagination from "./Pagination/Pagination";
 import UserGridItem from "./Users/UserGridItem";
 import UsersGrid from "./Users/UsersGrid";
 import EditUser from "./Users/EditUser";
+import Login from "./Login/Login";
+import Welcome from "./Welcome/Welcome";
 
 export {
     CopiesGridItem,
@@ -16,4 +18,6 @@ export {
     UserGridItem,
     UsersGrid,
     EditUser,
+    Login,
+    Welcome,
 };
