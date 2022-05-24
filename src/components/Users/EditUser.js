@@ -128,7 +128,7 @@ const EditUser = ({ id }) => {
                             <input id="edit-password" type="password" placeholder="********" value={ password } onChange={ ( e ) => setPassword( e.target.value ) }/>
                         </label>
                     </div>
-                    <button className="save-edit">Edit</button>
+                    <button className="save-edit">Save</button>
                 </form>
             }
         </div>

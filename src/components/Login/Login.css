@@ -21,6 +21,11 @@
     box-shadow: 0 0 2px var(--secondary-color);
 }
 
+.login-form .error-text {
+    color: var(--secondary-color);
+    margin: 0;
+}
+
 .not-registered {
     margin-top: 1.5rem;
     display: flex;
