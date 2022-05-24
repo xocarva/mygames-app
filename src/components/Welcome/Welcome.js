@@ -9,7 +9,7 @@ const Welcome = ({ user }) => {
             <nav className="welcome-nav">
                 <Link to="/user/copies">My Collection</Link>
                 <Link to="/user/edit-profile">Edit Profile</Link>
-                {user && user?.data.admin &&<Link to="/admin">Admin</Link>}
+                { user && user?.data.admin ? <Link to="/admin">Admin</Link> : '' }
             </nav>
         </>
     );
