@@ -1,4 +1,4 @@
-@import './styles//normalize.css';
+@import './styles/normalize.css';
 
 :root {
 
@@ -7,11 +7,6 @@
   --white-background: #FCFAFA;
   --gray-background: #C8D3D5;
   --blue-background: #A4B8C4;
-  /* --light-cyan: rgb(221, 255, 247);
-  --blue-green: rgb(147, 225, 216);
-  --vivid-tangerine: rgb(255, 166, 158);
-  --irresistible:rgb(170, 68, 101);
-  --russian-violet:rgb(70, 34, 85); */
 }
 
 
@@ -19,4 +14,3 @@
   font-family: Helvetica, Arial, sans-serif;
   box-sizing: border-box;
 }
-

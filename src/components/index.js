@@ -9,6 +9,7 @@ import EditUser from "./Users/EditUser";
 import Login from "./Login/Login";
 import Welcome from "./Welcome/Welcome";
 import Switch from "./Switch/Switch";
+import Modal from "./Modal/Modal";
 
 export {
     CopiesGridItem,
@@ -22,4 +23,5 @@ export {
     Login,
     Welcome,
     Switch,
+    Modal,
 };

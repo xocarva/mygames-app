@@ -11,8 +11,18 @@ const userReducer = ( state = null, action ) => {
     }
 };
 
+const modalReducer = (state = null, action) => {
+    switch (action.type) {
+      case 'modal':
+        return action.modal
+      default:
+        return state
+    }
+  }
+
 const rootReducer = combineReducers({
     user: userReducer,
+    modal: modalReducer,
 });
 
 export default rootReducer;

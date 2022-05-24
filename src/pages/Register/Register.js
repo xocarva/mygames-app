@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../../hooks";
+import { useSetModal, useUser } from "../../hooks";
 import "./Register.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
-
 
 const Register = () => {
 
     const user = useUser();
     const navigate = useNavigate();
+    const setModal = useSetModal();
+
 
     if( user ) {
         navigate('/');
@@ -21,9 +22,11 @@ const Register = () => {
     const [ confirmPassword, setConfirmPassword ] = useState('');
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
-        const res = await fetch(SERVER_URL + '/register', {
+        try {
+          const res = await fetch(SERVER_URL + '/register', {
             method: 'POST',
             headers: {
                 Accept:'application/json',
@@ -33,16 +36,17 @@ const Register = () => {
           });
 
           if( res.ok ) {
-            const data = await res.json();
-            console.log(data)
-            // setModal( <p>{`Registered`}</p> );
+            setModal( <p>User registered</p> );
+            navigate('/');
 
-          } else if( res.status === 422 ) {
-              console.log('422', res)
           } else {
-            console.log('otro', res)
-            // setModal( <p>{`Something went wrong`}</p> );
+            const { message } = await res.json();
+            setModal( <p>{ message }</p> );
           }
+
+        } catch ( error ) {
+          setModal( <p>{ error.message }</p> );
+        }
     };
 
     return (
