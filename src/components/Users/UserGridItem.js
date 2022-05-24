@@ -14,23 +14,26 @@ const UserGridItem = ({ user, setUsers }) => {
     const [ showEdit, setShowEdit ] = useState( false );
 
     const handleDelete = async () => {
-        try {
-            const res = await fetch( SERVER_URL + `/users/${ user.id }`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': 'Bearer' + loggedUser?.token,
-                }
-            });
 
-            if ( res.ok ) {
-                setModal( <p>User deleted</p> );
-                setUsers( currentList => {
-                    return currentList.filter( u => u.id !== user.id );
+        if( window.confirm("Delete user ?") ) {
+            try {
+                const res = await fetch( SERVER_URL + `/users/${ user.id }`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer' + loggedUser?.token,
+                    }
                 });
-            };
 
-        } catch (error) {
-            setModal( <p>{ error.message }</p> );
+                if ( res.ok ) {
+                    window.alert('User deleted')
+                    setUsers( currentList => {
+                        return currentList.filter( u => u.id !== user.id );
+                    });
+                };
+
+            } catch (error) {
+                setModal( <p>{ error.message }</p> );
+            }
         }
 
     };

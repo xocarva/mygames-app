@@ -42,35 +42,36 @@ const EditUser = ({ id, setUsers }) => {
                 setAdmin( !!user.admin );
 
             } catch( error)  {
-                console.log(error);
+                setModal( <p>{ error.message }</p> );
             }
         }
         loadData();
 
-    },[ id, loggedUser ]);
+    },[ id, loggedUser, setModal ]);
 
     const validateData = () => {
-        if( !validateName( name ) ) {
+        if( name && !validateName( name ) ) {
             setErrorText( 'Name must have between 2 and 50 letters' );
             setErrorType( 'name' );
             document.getElementById( 'edit-name' ).focus();
             return false;
         }
 
-        if( !validateEmail( email ) ) {
+        if( email && !validateEmail( email ) ) {
             setErrorText( 'Invalid email format' );
             setErrorType( 'email' );
             document.getElementById( 'edit-email' ).focus();
             return false;
         }
 
-        if( !validatePassword( password ) ) {
+        if( password && !validatePassword( password ) ) {
             setErrorText( 'Password must have between 8 and 12 characters' );
             setErrorType( 'password' );
             document.getElementById( 'edit-password' ).focus();
             return false;
         }
 
+        setErrorType( '' );
         return true;
     };
 
