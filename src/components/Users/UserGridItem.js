@@ -1,25 +1,38 @@
 import { useState } from "react";
-import { useUser } from "../../hooks";
+import { useSetModal, useUser } from "../../hooks";
 import EditUser from "./EditUser";
 import "./UserGridItem.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const UserGridItem = ({ user }) => {
+const UserGridItem = ({ user, setUsers }) => {
+
+    const setModal= useSetModal();
 
     const loggedUser = useUser();
 
     const [ showEdit, setShowEdit ] = useState( false );
 
     const handleDelete = async () => {
-        const res = await fetch( SERVER_URL + `/users/${ user.id }`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': 'Bearer' + loggedUser?.token,
-            }
-        });
+        try {
+            const res = await fetch( SERVER_URL + `/users/${ user.id }`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer' + loggedUser?.token,
+                }
+            });
 
-        if (res.ok) console.log('deleted')
+            if ( res.ok ) {
+                setModal( <p>User deleted</p> );
+                setUsers( currentList => {
+                    return currentList.filter( u => u.id !== user.id );
+                });
+            };
+
+        } catch (error) {
+            setModal( <p>{ error.message }</p> );
+        }
+
     };
 
     return (
@@ -35,7 +48,7 @@ const UserGridItem = ({ user }) => {
                     </div>
                 </section>
                 { showEdit &&
-                    <EditUser id={ user.id } />
+                    <EditUser id={ user.id } setUsers={ setUsers } />
                 }
             </article>
 

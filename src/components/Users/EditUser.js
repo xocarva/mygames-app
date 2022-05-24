@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useUser } from "../../hooks";
-import Switch from "../Switch/Switch";
+import { useSetModal, useUser } from "../../hooks";
+import { Switch } from "../../components";
+import { validateName, validateEmail, validatePassword } from "../../utils/validateData";
 import "./EditUser.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const EditUser = ({ id }) => {
+const EditUser = ({ id, setUsers }) => {
 
     const loggedUser = useUser();
+    const setModal = useSetModal();
 
     const loggedAdmin = !!loggedUser?.data?.admin;
 
@@ -20,34 +22,64 @@ const EditUser = ({ id }) => {
     const [ password, setPassword ] = useState('');
     const [ admin, setAdmin ] = useState( false );
 
+    const [errorType, setErrorType] = useState('');
+    const [errorText, setErrorText] = useState('');
+
     useEffect( () => {
         const loadData = async () => {
             try {
                 const res = await fetch(SERVER_URL + `/users/${ id }`, {
                     headers: {
-                        'Authorization': 'Bearer ' + loggedUser?.token
+                        'Authorization': 'Bearer ' + loggedUser?.token,
                     }
-                })
-                const { data:user } = await res.json()
+                });
+
+                const { data:user } = await res.json();
 
                 setEditedUser( user );
                 setNameHolder( user.name );
                 setEmailHolder( user.email );
                 setAdmin( !!user.admin );
 
-            } catch(error) {
+            } catch( error)  {
                 console.log(error);
             }
-
         }
         loadData();
 
     },[ id, loggedUser ]);
 
+    const validateData = () => {
+        if( !validateName( name ) ) {
+            setErrorText( 'Name must have between 2 and 50 letters' );
+            setErrorType( 'name' );
+            document.getElementById( 'edit-name' ).focus();
+            return false;
+        }
+
+        if( !validateEmail( email ) ) {
+            setErrorText( 'Invalid email format' );
+            setErrorType( 'email' );
+            document.getElementById( 'edit-email' ).focus();
+            return false;
+        }
+
+        if( !validatePassword( password ) ) {
+            setErrorText( 'Password must have between 8 and 12 characters' );
+            setErrorType( 'password' );
+            document.getElementById( 'edit-password' ).focus();
+            return false;
+        }
+
+        return true;
+    };
+
 
     const handleSubmit = async ( e ) => {
 
         e.preventDefault();
+
+        if( !validateData() ) return;
 
         let body = {};
         if( name ) body.name = name;
@@ -56,6 +88,46 @@ const EditUser = ({ id }) => {
 
         if( name || email || password ) {
 
+            try {
+                const res = await fetch( SERVER_URL + `/users/${ id }`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': 'Bearer ' + loggedUser?.token,
+                        Accept:'application/json',
+                            'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body),
+                });
+
+                if( res.ok ) {
+                    const { data:user } = await res.json();
+                    setName('');
+                    setEmail('');
+                    setPassword('');
+                    setNameHolder( user.name );
+                    setEmailHolder( user.email );
+                    setAdmin( !!user.admin );
+
+                    setUsers( currentList => {
+                        return currentList.map( u => {
+                            return u.id === id ? user : u;
+                        });
+                    });
+
+                } else {
+                    const { message } = await res.json();
+                    setModal( <p>{ message }</p> );
+                }
+            } catch ( error ) {
+                setModal( <p>{ error.message }</p> );
+            }
+        }
+
+    };
+
+    const handleAdmin = async () => {
+
+        try {
             const res = await fetch( SERVER_URL + `/users/${ id }`, {
                 method: 'PATCH',
                 headers: {
@@ -63,45 +135,26 @@ const EditUser = ({ id }) => {
                     Accept:'application/json',
                         'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(body),
+                body: JSON.stringify({ admin: !admin }),
             });
 
             if( res.ok ) {
                 const { data:user } = await res.json();
-                setName('');
-                setEmail('');
-                setPassword('');
-                setNameHolder( user.name );
-                setEmailHolder( user.email );
-                setAdmin( !!user.admin );
-
+                console.log(user)
+                setAdmin( !! user.admin );
+                setUsers( currentList => {
+                    return currentList.map( u => {
+                        return u.id === id ? user : u;
+                    });
+                });
             } else {
-                const { error } = await res.json();
-                console.log(error)
+                const { message } = await res.json();
+                setModal( <p>{ message }</p> );
             }
+        } catch ( error ) {
+            setModal( <p>{ error.message }</p> );
         }
 
-    };
-
-    const handleAdmin = async () => {
-        const res = await fetch( SERVER_URL + `/users/${ id }`, {
-            method: 'PATCH',
-            headers: {
-                'Authorization': 'Bearer ' + loggedUser?.token,
-                Accept:'application/json',
-                    'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ admin: !admin }),
-        });
-
-        if(res.ok) {
-            const { data:user } = await res.json();
-            console.log(user)
-            setAdmin( !! user.admin );
-        } else {
-            const { error } = await res.json();
-            console.log(error)
-        }
     }
 
     return (
@@ -117,7 +170,12 @@ const EditUser = ({ id }) => {
                     <div className="form-inputs">
                         <label htmlFor="edit-name">
                             Name
-                            <input id="edit-name" type="text" placeholder={ nameHolder } value={ name } onChange={ ( e ) => setName( e.target.value ) }/>
+                            <input id="edit-name" type="text" placeholder={ nameHolder } value={ name }
+                                onChange={ ( e ) => {
+                                    setName( e.target.value );
+                                    setErrorType('');
+                                }}
+                            />
                         </label>
                         <label htmlFor="edit-email">
                             Email
@@ -128,6 +186,7 @@ const EditUser = ({ id }) => {
                             <input id="edit-password" type="password" placeholder="********" value={ password } onChange={ ( e ) => setPassword( e.target.value ) }/>
                         </label>
                     </div>
+                    { errorType && <p className='error-text'>{ errorText }</p> }
                     <button className="save-edit">Save</button>
                 </form>
             }

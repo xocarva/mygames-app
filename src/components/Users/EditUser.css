@@ -39,9 +39,22 @@
     gap: 0.5rem;
 }
 
-.edit-user-form .form-inputs label input {
+.edit-user-form label input {
     text-align: center;
     padding: 0.5rem;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.edit-user-form input:focus {
+    outline: none;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 2px var(--secondary-color);
+}
+
+.edit-user-form .error-text {
+    color: var(--secondary-color);
+    margin: 0;
 }
 
 .edit-user-form .save-edit {
@@ -49,3 +62,4 @@
     width: 5rem;
     padding: 0.2rem;
 }
+

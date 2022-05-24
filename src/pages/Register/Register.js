@@ -26,7 +26,7 @@ const Register = () => {
 
     const validateData = () => {
         if( !validateName( name ) ) {
-            setErrorText( 'Name must have between 2 and 50 characters' );
+            setErrorText( 'Name must have between 2 and 50 letters' );
             setErrorType( 'name' );
             document.getElementById( 'register-name' ).focus();
             return false;
