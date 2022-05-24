@@ -16,6 +16,8 @@ const UsersGrid = () => {
     const perPage = 10;
     const totalPages = Math.ceil( users?.length / perPage );
 
+    console.log(users)
+
     return (
         <>
             { isLoading && < Loading /> }

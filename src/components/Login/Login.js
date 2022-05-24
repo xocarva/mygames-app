@@ -46,7 +46,6 @@ const Login = () => {
                 <span>Not registered?</span>
                 <Link to="/register" >Register now</Link>
             </div>
-
         </>
     );
 };

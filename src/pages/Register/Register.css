@@ -1,11 +1,20 @@
-.login-form {
+.register-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.register-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
 }
 
-.login-form input {
+.register-form input {
     text-align: center;
     width: calc(25vw + 25vh + 5rem);
     width: 90vw;
@@ -15,30 +24,28 @@
     color: var(--primary-color);
 }
 
-.login-form input:focus {
+.register-form input:focus {
     outline: none;
     border: 2px solid var(--secondary-color);
     box-shadow: 0 0 2px var(--secondary-color);
 }
 
-.not-registered {
+.already-registered {
     margin-top: 1.5rem;
     display: flex;
     gap: 1rem;
 }
 
-.not-registered a {
+.already-registered a {
     color: var(--secondary-color);
     font-weight: bold;
     text-decoration: none;
 }
 
-.not-registered a:hover {
+.already-registered a:hover {
     text-decoration: underline;
 }
 
-.login-form .login-button {
+.register-form .register-button {
     cursor: pointer;
 }
-
-
