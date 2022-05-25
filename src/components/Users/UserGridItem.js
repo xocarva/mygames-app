@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useSetModal, useUser } from "../../hooks";
 import EditUser from "./EditUser";
 import "./UserGridItem.css";
@@ -8,14 +10,15 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const UserGridItem = ({ user, setUsers }) => {
 
     const setModal= useSetModal();
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const loggedUser = useUser();
 
     const [ showEdit, setShowEdit ] = useState( false );
 
     const handleDelete = async () => {
 
-        if( window.confirm("Delete user ?") ) {
+        if( window.confirm( 'Delete user?' ) ) {
             try {
                 const res = await fetch( SERVER_URL + `/users/${ user.id }`, {
                     method: 'DELETE',
@@ -25,11 +28,17 @@ const UserGridItem = ({ user, setUsers }) => {
                 });
 
                 if ( res.ok ) {
-                    window.alert('User deleted')
+                    window.alert( 'User deleted' );
                     setUsers( currentList => {
                         return currentList.filter( u => u.id !== user.id );
                     });
-                };
+                } else if( res.status === 401 ) {
+                    dispatch({ type: 'logout' });
+                    setModal( <p>Session expired</p> );
+                    navigate( '/' );
+                } else {
+                    setModal( <p>Something went wrong</p> );
+                }
 
             } catch (error) {
                 setModal( <p>{ error.message }</p> );

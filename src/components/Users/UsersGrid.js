@@ -1,18 +1,22 @@
-import { useFetch, useUser } from "../../hooks";
+import { useSetModal, useUser } from "../../hooks";
 import { Loading, Pagination } from "../../components";
 import UserGridItem from "./UserGridItem";
 import { useEffect, useState } from "react";
 import "./UsersGrid.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const UsersGrid = () => {
 
     const user = useUser();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const setModal = useSetModal();
+
     const [ users, setUsers ] = useState( null );
     const [ isLoading, setIsLoading ] = useState( true );
-
-    // const { isLoading, data:users } = useFetch( url );
 
     useEffect(() => {
 
@@ -20,25 +24,33 @@ const UsersGrid = () => {
 
             setIsLoading( true );
             try {
-                const response = await fetch(SERVER_URL + '/users', {
+                const res = await fetch(SERVER_URL + '/users', {
                     headers: {
                         'Authorization': 'Bearer ' + user.token,
                         Accept:'application/json',
                         'Content-Type': 'application/json'
                     }
-                })
+                });
 
-                const { data } = await response.json();
 
-                if ( response.ok ) {
+                if ( res.ok ) {
+                    const { data } = await res.json();
                     setUsers( data );
                     setIsLoading( false );
+
+                } else if( res.status === 401 ) {
+
+                    dispatch({ type: 'logout' });
+                    setModal( <p>Session expired</p> );
+                    navigate( '/' );
+
                 } else {
-                    console.log( 'error' );
+                    const { message } = await res.json();
+                    setModal( <p>{ message }</p> );
                 }
             }
-            catch (error) {
-                console.log( error );
+            catch ( error ) {
+                setModal( <p>{ error.message }</p> );
             }
         }
 

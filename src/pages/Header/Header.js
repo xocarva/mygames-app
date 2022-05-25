@@ -11,7 +11,6 @@ const Header = () => {
     return (
         <header className="main-header">
             <Link to="/" title="MyGames" className="header-title"><h1>MyGames 🎮</h1></Link>
-            {/* <h1>MyGames 🎮</h1> */}
             <span>{ user?.data.name }</span>
             <Navbar />
         </header>

@@ -3,6 +3,8 @@ import { useSetModal, useUser } from "../../hooks";
 import { Switch } from "../../components";
 import { validateName, validateEmail, validatePassword } from "../../utils/validateData";
 import "./EditUser.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -25,6 +27,9 @@ const EditUser = ({ id, setUsers }) => {
     const [errorType, setErrorType] = useState('');
     const [errorText, setErrorText] = useState('');
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     useEffect( () => {
         const loadData = async () => {
             try {
@@ -34,12 +39,24 @@ const EditUser = ({ id, setUsers }) => {
                     }
                 });
 
-                const { data:user } = await res.json();
+                if( res.ok ) {
+                    const { data:user } = await res.json();
 
-                setEditedUser( user );
-                setNameHolder( user.name );
-                setEmailHolder( user.email );
-                setAdmin( !!user.admin );
+                    setEditedUser( user );
+                    setNameHolder( user.name );
+                    setEmailHolder( user.email );
+                    setAdmin( !!user.admin );
+
+                } else if( res.status === 401 ) {
+                    dispatch({ type: 'logout' });
+                    setModal( <p>Session expired</p> );
+                    navigate( '/' );
+
+                } else {
+                    const { message } = await res.json();
+                    setModal( <p>{ message }</p> );
+                }
+
 
             } catch( error)  {
                 setModal( <p>{ error.message }</p> );
@@ -47,7 +64,7 @@ const EditUser = ({ id, setUsers }) => {
         }
         loadData();
 
-    },[ id, loggedUser, setModal ]);
+    },[ id, loggedUser ]);
 
     const validateData = () => {
         if( name && !validateName( name ) ) {
@@ -141,7 +158,6 @@ const EditUser = ({ id, setUsers }) => {
 
             if( res.ok ) {
                 const { data:user } = await res.json();
-                console.log(user)
                 setAdmin( !! user.admin );
                 setUsers( currentList => {
                     return currentList.map( u => {
