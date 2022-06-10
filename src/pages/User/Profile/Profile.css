@@ -1,0 +1,49 @@
+.profile-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-main .profile-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-main .profile-form label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-main .profile-form label input {
+    text-align: center;
+    padding: 0.3rem;
+    width: 90vw;
+    max-width: 30rem;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.profile-form input:focus {
+    outline: none;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 2px var(--secondary-color);
+}
+
+.profile-form .profile-error-text {
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.profile-form .save-profile {
+    cursor: pointer;
+    width: 5rem;
+    padding: 0.2rem;
+}

@@ -1,7 +1,6 @@
 import { UserCopies } from "./Copies";
-import EditProfile from "./EditProfile/EditProfile";
-
+import Profile from "./Profile/Profile";
 export {
     UserCopies,
-    EditProfile,
+    Profile,
 };
