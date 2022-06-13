@@ -14,15 +14,7 @@
     gap: 1rem;
 }
 
-.profile-main .profile-form label {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
-.profile-main .profile-form label input {
+.profile-main .profile-form input {
     text-align: center;
     padding: 0.3rem;
     width: 90vw;

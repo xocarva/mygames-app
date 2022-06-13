@@ -161,48 +161,44 @@ const Profile = () => {
         <main className="profile-main">
             <h1>My Profile</h1>
             <form className="profile-form" onSubmit={ handleSubmit } >
-                <label htmlFor="profile-name">
-                    Name
-                    <input id="profile-name" type="text" placeholder={ nameHolder } value={ name }
-                        onChange={ ( e ) => {
-                            setName( e.target.value );
-                            setErrorType('');
-                            setErrorText('');
-                        }}
-                    />
-                </label>
-                <label htmlFor="profile-email">
-                    Email
-                    <input id="profile-email" type="email" placeholder={ emailHolder } value={ email }
-                        onChange={ ( e ) => {
-                            setEmail( e.target.value );
-                            setErrorType('');
-                            setErrorText('');
-                        }}
-                    />
-                </label>
-                <label htmlFor="profile-password">
-                    Password
-                    <input id="profile-password" type="password" placeholder="********" value={ password }
+                <label htmlFor="profile-name">Name</label>
+                <input id="profile-name" type="text" placeholder={ nameHolder } value={ name }
+                    onChange={ ( e ) => {
+                        setName( e.target.value );
+                        setErrorType('');
+                        setErrorText('');
+                    }}
+                />
+                <label htmlFor="profile-email">Email</label>
+                <input id="profile-email" type="email" placeholder={ emailHolder } value={ email }
+                    onChange={ ( e ) => {
+                        setEmail( e.target.value );
+                        setErrorType('');
+                        setErrorText('');
+                    }}
+                />
+                <label htmlFor="profile-password">Password</label>
+                <input id="profile-password" type="password" placeholder="********" value={ password }
                         onChange={ ( e ) => {
                             setPassword( e.target.value );
                             setErrorType('');
                             setErrorText('');
                         }}
-                    />
-                </label>
+                />
                 <label htmlFor="profile-confirm-password">
                     Confirm Password
-                    <input id="profile-confirm-password" type="password" placeholder="********" value={ confirmPassword }
-                        onChange={ ( e ) => {
-                            setConfirmPassword( e.target.value );
-                            setErrorType('');
-                            setErrorText('');
-                        }}
-                    />
+                    <span className='check-emoji'>{ password ? ( password === confirmPassword ) ? ' ✅' : ' ❌' : '' }
+                    </span>
                 </label>
-                    { errorType && <p className='profile-error-text'>{ errorText }</p> }
-                    <button className="save-profile">Save</button>
+                <input id="profile-confirm-password" type="password" placeholder="********" value={ confirmPassword }
+                    onChange={ ( e ) => {
+                        setConfirmPassword( e.target.value );
+                        setErrorType('');
+                        setErrorText('');
+                    }}
+                />
+                { errorType && <p className='profile-error-text'>{ errorText }</p> }
+                <button className="save-profile">Save</button>
             </form>
         </main>
     );
