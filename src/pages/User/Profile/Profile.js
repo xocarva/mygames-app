@@ -32,7 +32,7 @@ const Profile = () => {
     useEffect( () => {
         const loadData = async () => {
             try {
-                const res = await fetch(SERVER_URL + `/users/${ user?.data?.id }`, {
+                const res = await fetch(SERVER_URL + `/profile`, {
                     headers: {
                         'Authorization': 'Bearer ' + user?.token,
                     }
@@ -110,7 +110,7 @@ const Profile = () => {
         if( name || email || password ) {
 
             try {
-                const res = await fetch( SERVER_URL + `/users/${ user.data.id }`, {
+                const res = await fetch( SERVER_URL + '/profile', {
                     method: 'PATCH',
                     headers: {
                         'Authorization': 'Bearer ' + user.token,
