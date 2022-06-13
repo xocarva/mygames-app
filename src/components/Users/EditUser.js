@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useSetModal, useUser } from "../../hooks";
 import { Switch } from "../../components";
 import { validateName, validateEmail, validatePassword } from "../../utils/validateData";
-import "./EditUser.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import "./EditUser.css";
+
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
