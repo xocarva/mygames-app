@@ -1,0 +1,23 @@
+.games-grid-item {
+    background-color: var(--light-secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 5px 5px 5px rgba(71, 70, 70, 0.618);
+}
+
+.games-grid-item .game-header{
+    text-align: center;
+}
+
+.games-grid-item .game-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+    gap: 1rem;
+}
+

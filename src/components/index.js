@@ -18,6 +18,8 @@ import PlatformsGrid from "./Platforms/PlatformsGrid";
 import NewPlatformForm from "./Platforms/NewPlatformForm";
 import StudiosGrid from "./Studios/StudiosGrid";
 import NewStudioForm from "./Studios/NewStudioForm";
+import GamesGrid from "./Games/GamesGrid/GamesGrid";
+import GamesFilters from "./Games/GamesFilters/GamesFilters";
 
 export {
     CopiesGridItem,
@@ -40,4 +42,6 @@ export {
     NewPlatformForm,
     StudiosGrid,
     NewStudioForm,
+    GamesGrid,
+    GamesFilters,
 };
