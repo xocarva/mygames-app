@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSetModal, useSetUser, useUser } from "../../../hooks";
 import { validateEmail, validateName, validatePassword } from "../../../utils/validateData";
+import { Loading } from "../../../components";
 import "./Profile.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -165,7 +166,9 @@ const Profile = () => {
     return (
         <main className="profile-main">
             <h1>My Profile</h1>
-            <form className="profile-form" onSubmit={ handleSubmit } >
+            { !nameHolder && <Loading />}
+            { nameHolder &&
+                <form className="profile-form" onSubmit={ handleSubmit } >
                 <label htmlFor="profile-name">Name</label>
                 <input id="profile-name" type="text" placeholder={ nameHolder } value={ name }
                     onChange={ ( e ) => {
@@ -205,6 +208,7 @@ const Profile = () => {
                 { errorType && <p className='profile-error-text'>{ errorText }</p> }
                 <button className="save-profile">Save</button>
             </form>
+            }
         </main>
     );
 };
