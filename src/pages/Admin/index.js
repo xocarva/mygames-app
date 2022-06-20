@@ -1,13 +1,17 @@
 import { AdminMenu } from "./AdminMenu";
-import { AdminUsers } from "./AdminUsers";
-import { UserFile  } from "./AdminUsers";
-import { AdminGenres } from "./AdminGenres";
-import { AdminPlatforms } from "./AdminPlatforms";
+import { AdminUsers, CreateUser } from "./AdminUsers";
+import { AdminGenres, CreateGenre } from "./AdminGenres";
+import { AdminPlatforms, CreatePlatform } from "./AdminPlatforms";
+import { AdminStudios, CreateStudio } from "./AdminStudios";
 
 export {
     AdminMenu,
     AdminUsers,
-    UserFile,
+    CreateUser,
     AdminGenres,
+    CreateGenre,
     AdminPlatforms,
+    CreatePlatform,
+    AdminStudios,
+    CreateStudio,
 };

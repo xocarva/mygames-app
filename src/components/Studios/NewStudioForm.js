@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSetModal, useUser } from "../../hooks";
-import { validateName } from "../../utils/validateData";
+import { validateNameWithNumbers } from "../../utils/validateData";
 import "./NewStudioForm.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -22,7 +22,7 @@ const NewStudioForm = () => {
     const [ name, setName ] = useState('');
 
     const validateData = () => {
-        if( !validateName( name ) ) {
+        if( !validateNameWithNumbers( name ) ) {
             setErrorText( 'Name must have between 2 and 50 letters' );
             setErrorType( 'name' );
             document.getElementById( 'create-studio-name' ).focus();
@@ -72,7 +72,7 @@ const NewStudioForm = () => {
                   }}
                 />
                 { errorType === 'name' && <p className='error-text'>{ errorText }</p> }
-                <button className="create-studio-button">Create genre</button>
+                <button className="create-studio-button">Create studio</button>
             </form>
     );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSetModal, useUser } from "../../hooks";
-import { validateName } from "../../utils/validateData";
+import { validateNameWithNumbers } from "../../utils/validateData";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./EditStudio.css";
@@ -8,7 +8,7 @@ import "./EditStudio.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const EditStudio = ({ id, setGenres }) => {
+const EditStudio = ({ id, setStudios }) => {
 
     const loggedUser = useUser();
     const setModal = useSetModal();
@@ -59,7 +59,7 @@ const EditStudio = ({ id, setGenres }) => {
     },[ id, loggedUser ]);
 
     const validateData = () => {
-        if( name && !validateName( name ) ) {
+        if( name && !validateNameWithNumbers( name ) ) {
             setErrorText( 'Name must have between 2 and 50 letters' );
             setErrorType( 'name' );
             document.getElementById( 'edit-name' ).focus();
@@ -98,7 +98,7 @@ const EditStudio = ({ id, setGenres }) => {
                     setName('');
                     setNameHolder( studio.name );
 
-                    setGenres( currentList => {
+                    setStudios( currentList => {
                         return currentList.map( s => {
                             return s.id === id ? studio : s;
                         });
