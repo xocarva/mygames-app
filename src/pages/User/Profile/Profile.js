@@ -38,7 +38,12 @@ const Profile = () => {
                     }
                 });
 
-                if( res.ok ) {
+                if( !user ){
+                    dispatch({ type: 'logout' });
+                    setModal( <p>Session expired</p> );
+                    navigate( '/' );
+
+                } else if( res.ok ) {
                     const { data:user } = await res.json();
 
                     setNameHolder( user.name );

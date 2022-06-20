@@ -11,6 +11,9 @@ import Welcome from "./Welcome/Welcome";
 import Switch from "./Switch/Switch";
 import Modal from "./Modal/Modal";
 import NewUserForm from "./Users/NewUserForm";
+import GenreGridItem from "./Genres/GenreGridItem";
+import GenresGrid from"./Genres/GenresGrid";
+import NewGenreForm from "./Genres/NewGenreForm";
 
 export {
     CopiesGridItem,
@@ -26,4 +29,7 @@ export {
     Switch,
     Modal,
     NewUserForm,
+    GenreGridItem,
+    GenresGrid,
+    NewGenreForm,
 };

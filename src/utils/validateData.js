@@ -2,7 +2,7 @@ export const validateName = ( name ) => {
 
     const nameRegex = /^[A-Za-zaáÁéÉíÍóÓúÚ\u00f1\u00d1\s]+$/;
 
-    if( name?.length <= 2 || name?.length >= 50 || !nameRegex.test( name ) ) {
+    if( name?.length < 2 || name?.length > 50 || !nameRegex.test( name ) ) {
         return false;
 
     } else return true;

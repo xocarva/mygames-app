@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { AdminMenu, AdminUsers, UserFile } from "../pages/Admin";
-import { AdminEditUser, CreateUser } from "../pages/Admin/AdminUsers";
+import { AdminGenres, AdminMenu, AdminUsers, UserFile } from "../pages/Admin";
+import { CreateGenre } from "../pages/Admin/AdminGenres";
+import { CreateUser } from "../pages/Admin/AdminUsers";
 
 const AdminRouter = () => {
 
@@ -9,8 +10,9 @@ const AdminRouter = () => {
             <Route path='/' element={ <AdminMenu /> } />
             <Route path="/users" element={ <AdminUsers /> } />
             <Route path="/users/create" element={ <CreateUser /> } />
-            <Route path="/users/:id/edit" element={ <AdminEditUser /> } />
             <Route path="/users/:id" element={ <UserFile /> } />
+            <Route path="/genres" element={ <AdminGenres /> } />
+            <Route path="/genres/create" element={ <CreateGenre /> } />
         </Routes>
     );
 };

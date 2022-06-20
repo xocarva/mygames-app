@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useSetModal from "./useSetModal";
 import useUser from "./useUser";
 
 const useFetch = ( url, method = 'GET', body = null, defaultValue = null ) => {
 
     const user = useUser();
+    const dispatch = useDispatch();
+    const setModal = useSetModal();
+    const navigate = useNavigate();
 
     const [ status, setStatus ] = useState( null );
     const [ data, setData ] = useState( defaultValue );
@@ -36,11 +42,16 @@ const useFetch = ( url, method = 'GET', body = null, defaultValue = null ) => {
             const json = await response.json();
 
 
-            if ( response && !response.ok ) {
-                setError( json.error );
-                setIsLoading( false );
-                return;
-            };
+            if ( response.status === 401 ) {
+                dispatch({ type: 'logout' });
+                setModal( <p>Session expired</p> );
+                navigate( '/' );
+
+            } else if ( response && !response.ok ) {
+                    setError( json.error );
+                    setIsLoading( false );
+                    return;
+            }
 
             setStatus( json.status );
             setData( json.data );
