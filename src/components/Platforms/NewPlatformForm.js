@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSetModal, useUser } from "../../hooks";
-import { validateName } from "../../utils/validateData";
+import { validateNameWithNumbers } from "../../utils/validateData";
 import "./NewPlatformForm.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -23,7 +23,7 @@ const NewPlatformForm = () => {
     const [ name, setName ] = useState('');
 
     const validateData = () => {
-        if( !validateName( name ) ) {
+        if( !validateNameWithNumbers( name ) ) {
             setErrorText( 'Name must have between 2 and 50 letters' );
             setErrorType( 'name' );
             document.getElementById( 'create-genre-name' ).focus();
@@ -73,7 +73,7 @@ const NewPlatformForm = () => {
                   }}
                 />
                 { errorType === 'name' && <p className='error-text'>{ errorText }</p> }
-                <button className="create-platform-button">Create genre</button>
+                <button className="create-platform-button">Create platform</button>
             </form>
     );
 };
