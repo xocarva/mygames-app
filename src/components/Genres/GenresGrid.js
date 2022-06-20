@@ -70,7 +70,7 @@ const GenresGrid = () => {
             { !isLoading && genres && genres.length > 0 &&
                 <section className="users-grid">
                     { genres?.slice( page * perPage, ( page + 1 ) * perPage ).map( genre =>
-                        <GenreGridItem key={ user.id}  genre={ genre } setGenres={ setGenres } />
+                        <GenreGridItem key={ genre.id}  genre={ genre } setGenres={ setGenres } />
                     )}
                 </section>
             }
