@@ -1,0 +1,57 @@
+.edit-platform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: var(--blue-background);
+    background: linear-gradient(180deg,var(--gray-background) 0%, var(--blue-background) 100% ); 
+    padding: 1rem;
+}
+
+.edit-platform-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.edit-platform-form .form-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.edit-platform-form .form-inputs label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.edit-platforme-form label input {
+    text-align: center;
+    padding: 0.5rem;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.edit-platform-form input:focus {
+    outline: none;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 2px var(--secondary-color);
+}
+
+.edit-platform-form .error-text {
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.edit-platform-form .save-edit {
+    cursor: pointer;
+    width: 5rem;
+    padding: 0.2rem;
+}
+

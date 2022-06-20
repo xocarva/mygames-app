@@ -14,6 +14,8 @@ import NewUserForm from "./Users/NewUserForm";
 import GenreGridItem from "./Genres/GenreGridItem";
 import GenresGrid from"./Genres/GenresGrid";
 import NewGenreForm from "./Genres/NewGenreForm";
+import PlatformsGrid from "./Platforms/PlatformsGrid";
+import NewPlatformForm from "./Platforms/NewPlatformForm";
 
 export {
     CopiesGridItem,
@@ -32,4 +34,6 @@ export {
     GenreGridItem,
     GenresGrid,
     NewGenreForm,
+    PlatformsGrid,
+    NewPlatformForm,
 };

@@ -22,3 +22,14 @@ export const validatePassword = ( password ) => {
     return ( password.length >= 8 && password.length <= 12);
 };
 
+export const validateNameWithNumbers = ( name ) => {
+
+    const nameRegex = /^[0-9A-Za-zaáÁéÉíÍóÓúÚ\u00f1\u00d1\s]+$/;
+
+    if( name?.length < 2 || name?.length > 50 || !nameRegex.test( name ) ) {
+        return false;
+
+    } else return true;
+
+};
+
