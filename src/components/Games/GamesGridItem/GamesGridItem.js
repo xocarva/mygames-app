@@ -35,7 +35,11 @@ const GamesGridItem = ({ game, platforms }) => {
              }),
           });
           if( res.ok ) {
-            setModal( <p>Copy added to your collection</p> );
+            setModal( <p>Game added to your collection</p> );
+
+          } else if( res.status === 422 ) {
+            setModal( <p>Game already added to your collection</p> );
+
           } else {
             const { message } = await res.json();
             setModal( <p>{ message }</p> );
