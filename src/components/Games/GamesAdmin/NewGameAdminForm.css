@@ -1,0 +1,39 @@
+.create-game-admin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.create-game-admin-form input {
+    text-align: center;
+    width: 90vw;
+    max-width: 30rem;
+    padding: 0.5rem;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.create-game-admin-form input:focus {
+    outline: none;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 2px var(--secondary-color);
+}
+
+.create-game-admin-form .error-text {
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.already-registered {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.create-game-admin-form .create-game-admin-button {
+    width: 90vw;
+    max-width: 30rem;
+    height: 2rem;
+    cursor: pointer;
+}

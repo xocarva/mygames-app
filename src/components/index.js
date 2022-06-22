@@ -20,6 +20,9 @@ import StudiosGrid from "./Studios/StudiosGrid";
 import NewStudioForm from "./Studios/NewStudioForm";
 import GamesGrid from "./Games/GamesGrid/GamesGrid";
 import GamesFilters from "./Games/GamesFilters/GamesFilters";
+import GameAdminGridItem from "./Games/GamesAdmin/GameAdminGridItem";
+import GamesAdminGrid from "./Games/GamesAdmin/GamesAdminGrid";
+import NewGameAdminForm from "./Games/GamesAdmin/NewGameAdminForm";
 
 export {
     CopiesGridItem,
@@ -44,4 +47,7 @@ export {
     NewStudioForm,
     GamesGrid,
     GamesFilters,
+    GameAdminGridItem,
+    GamesAdminGrid,
+    NewGameAdminForm,
 };

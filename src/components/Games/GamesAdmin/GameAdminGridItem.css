@@ -1,0 +1,21 @@
+.games-admin-grid-item {
+    display: flex;
+    flex-direction: column;
+}
+.games-admin-grid-item-data {
+    background-color: var(--gray-background);
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+}
+
+.game-admin-options {
+    display: flex;
+    gap: 1rem;
+}
+.game-admin-options span {
+    cursor: pointer;
+}

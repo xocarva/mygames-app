@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import {
+    AdminGames,
     AdminGenres,
     AdminMenu,
     AdminPlatforms,
     AdminStudios,
     AdminUsers,
+    CreateAdminGame,
     CreateGenre,
     CreatePlatform,
     CreateStudio,
@@ -24,6 +26,8 @@ const AdminRouter = () => {
             <Route path="/platforms/create" element={ <CreatePlatform /> } />
             <Route path="/studios" element={ <AdminStudios /> } />
             <Route path="/studios/create" element={ <CreateStudio /> } />
+            <Route path="/games" element={ <AdminGames /> } />
+            <Route path="/games/create" element={ <CreateAdminGame /> } />
         </Routes>
     );
 };
