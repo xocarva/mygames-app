@@ -8,13 +8,15 @@ import "./EditGame.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const EditGame = ({ id, setGames }) => {
+const EditGame = ({ id, setGames, genres, studios }) => {
 
     const loggedUser = useUser();
     const setModal = useSetModal();
 
     const [ editedGame, setEditedGame ] = useState('');
     const [ titleHolder, setTitleHolder ] = useState('');
+    const [ genre, setGenre ] = useState('');
+    const [ studio, setStudio ] = useState('');
 
     const [ title, setTitle ] = useState('');
 
@@ -38,6 +40,8 @@ const EditGame = ({ id, setGames }) => {
 
                     setEditedGame( game );
                     setTitleHolder( game.attributes.title );
+                    setGenre( game.attributes.genreId );
+                    setStudio( game.attributes.studioId );
 
                 } else if( res.status === 401 ) {
                     dispatch({ type: 'logout' });
@@ -59,12 +63,17 @@ const EditGame = ({ id, setGames }) => {
     },[ id, loggedUser ]);
 
     const validateData = () => {
+
         if( title && !validateNameWithNumbers( title ) ) {
             setErrorText( 'Title must have between 2 and 50 letters' );
             setErrorType( 'title' );
             document.getElementById( 'edit-title' ).focus();
             return false;
         }
+
+        if( isNaN( genre ) ) return false;
+
+        if( isNaN( studio )) return false;
 
         setErrorType( '' );
         return true;
@@ -77,10 +86,12 @@ const EditGame = ({ id, setGames }) => {
 
         if( !validateData() ) return;
 
-        if( title ) {
+        if( title || genre || studio ) {
 
             let body = {};
-            body.title = title;
+            if( title ) body.title = title;
+            if( genre ) body.genreId = genre;
+            if( studio ) body.studioId = studio;
 
             try {
                 const res = await fetch( SERVER_URL + `/games/${ id }`, {
@@ -96,7 +107,7 @@ const EditGame = ({ id, setGames }) => {
                 if( res.ok ) {
                     const { data:game } = await res.json();
                     setTitle('');
-                    setTitleHolder( game.attributes.name );
+                    setTitleHolder( game.attributes.title );
 
                     setGames( currentList => {
                         return currentList.map( g => {
@@ -104,12 +115,14 @@ const EditGame = ({ id, setGames }) => {
                         });
                     });
 
+                    setModal( <p>Saved</p> );
+
                 } else if( res.status === 401 ) {
                     dispatch({ type: 'logout' });
                     setModal( <p>Session expired</p> );
                     navigate( '/' );
 
-                } else if( res.status === 422 ) {
+                } else if( res.status === 512 ) {
                     setModal( <p>Game already exists</p> );
 
                 } else {
@@ -137,6 +150,24 @@ const EditGame = ({ id, setGames }) => {
                                 }}
                             />
                         </label>
+                        <select value={ genre } onChange={ ( e ) => setGenre( e.target.value ) }>
+                            { genres?.map( genre => {
+                                return(
+                                    <option key={ genre.id } value={ genre.id }>
+                                        { genre.name }
+                                    </option>
+                                )
+                            })}
+                        </select>
+                        <select value={ studio } onChange={ ( e ) => setStudio( e.target.value ) }>
+                            { studios?.map( studio => {
+                                return(
+                                    <option key={ studio.id } value={ studio.id }>
+                                        { studio.name }
+                                    </option>
+                                )
+                            })}
+                        </select>
                     </div>
                     { errorType && <p className='error-text'>{ errorText }</p> }
                     <button className="save-edit">Save</button>

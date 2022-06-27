@@ -1,4 +1,4 @@
-import { useSetModal, useUser } from "../../../hooks";
+import { useFetch, useSetModal, useUser } from "../../../hooks";
 import { Loading, Pagination } from "../../../components";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -17,6 +17,9 @@ const GamesAdminGrid = () => {
 
     const [ games, setGames ] = useState( null );
     const [ isLoading, setIsLoading ] = useState( true );
+
+    const { data: genres } = useFetch( SERVER_URL + '/genres');
+    const { data: studios } = useFetch( SERVER_URL + '/studios');
 
     useEffect(() => {
 
@@ -69,7 +72,7 @@ const GamesAdminGrid = () => {
             { !isLoading && games && games.length > 0 &&
                 <section className="games-admin-grid">
                     { games?.slice( page * perPage, ( page + 1 ) * perPage ).map( game =>
-                        <GameAdminGridItem key={ game.id}  game={ game } setGames={ setGames } />
+                        <GameAdminGridItem key={ game.id}  game={ game } setGames={ setGames } genres={ genres } studios={ studios } />
                     )}
                 </section>
             }

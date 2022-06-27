@@ -7,7 +7,7 @@ import "./GameAdminGridItem.css";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const GameAdminGridItem = ({ game, setGames }) => {
+const GameAdminGridItem = ({ game, setGames, genres, studios }) => {
 
     const setModal= useSetModal();
     const dispatch = useDispatch();
@@ -58,7 +58,7 @@ const GameAdminGridItem = ({ game, setGames }) => {
                     </div>
                 </section>
                 { showEdit &&
-                    <EditGame id={ game.id } setGames={ setGames } />
+                    <EditGame id={ game.id } setGames={ setGames } genres={ genres } studios={ studios } />
                 }
             </article>
 
