@@ -8,16 +8,15 @@ const GamesFilters = ({ setUrl }) => {
 
     const [ title, setTitle ] = useState('');
     const [ genre, setGenre ] = useState('');
-    const [ platform, setPlatform ] = useState('');
     const [ studio, setStudio ] = useState('');
 
     const handleSubmit = ( e ) => {
         e.preventDefault();
 
-        let urlQuery = SERVER_URL + '/copies';
+        let urlQuery = SERVER_URL + '/games';
         let prevParams = false;
 
-        if( title || genre || platform || studio ) {
+        if( title || genre || studio ) {
             urlQuery += '?';
         }
 
@@ -33,15 +32,6 @@ const GamesFilters = ({ setUrl }) => {
                 prevParams = true;
             }
             urlQuery += `genre=${ genre }`
-        }
-
-        if( platform ) {
-            if ( prevParams ) {
-                urlQuery += '&'
-            } else {
-                prevParams = true;
-            }
-            urlQuery += `platform=${ platform }`
         }
 
         if( studio ) {
@@ -60,7 +50,6 @@ const GamesFilters = ({ setUrl }) => {
         e.preventDefault();
         setTitle('');
         setGenre('');
-        setPlatform('');
         setStudio('');
     };
 
@@ -76,10 +65,6 @@ const GamesFilters = ({ setUrl }) => {
                     <li className="filter">
                         <label htmlFor="genre-filter">Genre</label>
                         <input type="search" id="genre-filter" value={ genre } onChange={ e => setGenre( e.target.value ) }></input>
-                    </li>
-                    <li className="filter">
-                        <label htmlFor="platform-filter">Platform</label>
-                        <input type="search" id="platform-filter" value={ platform } onChange={ e => setPlatform( e.target.value ) }></input>
                     </li>
                     <li className="filter">
                         <label htmlFor="studio-filter">Studio</label>
