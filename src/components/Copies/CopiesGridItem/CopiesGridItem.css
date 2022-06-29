@@ -1,6 +1,5 @@
 .copies-grid-item {
-    color: var(--russian-violet);
-    background-color: var(--vivid-tangerine);
+    background-color: var(--light-secondary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
