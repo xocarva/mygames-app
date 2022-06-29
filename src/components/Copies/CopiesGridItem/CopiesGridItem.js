@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSetModal, useUser } from "../../../hooks";
@@ -12,8 +13,78 @@ const CopiesGridItem = ({ copy, setCopies }) => {
     const setModal = useSetModal();
     const navigate = useNavigate();
 
-    const handleEdit = () => {
+    const [ rating, setRating ] = useState( copy?.attributes.rating );
+    const [ completed, setCompleted ] = useState( copy?.attributes.completed );
 
+    const handleRate = async ( rating ) => {
+
+        let body = {};
+        if ( rating ) body.rating = rating;
+
+        try {
+            const res = await fetch( SERVER_URL + `/copies/${ copy.id }`, {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': 'Bearer ' + user?.token,
+                    Accept:'application/json',
+                        'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body),
+            });
+
+            if( res.ok ) {
+                const { data:copy } = await res.json();
+
+                setRating( copy.attributes.rating );
+
+                setCopies( currentList => {
+                    return currentList.map( c => {
+                        return c.id === copy.id ? copy : c;
+                    });
+                });
+
+            } else {
+                const { message } = await res.json();
+                setModal( <p>{ message }</p> );
+            }
+        } catch ( error ) {
+            setModal( <p>{ error.message }</p> );
+        }
+    };
+
+    const handleCompleted = async () => {
+
+        let body = { completed: !completed };
+
+        try {
+            const res = await fetch( SERVER_URL + `/copies/${ copy.id }`, {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': 'Bearer ' + user?.token,
+                    Accept:'application/json',
+                        'Content-Type': 'application/json'
+                },
+                body: JSON.stringify( body ),
+            });
+
+            if( res.ok ) {
+                const { data:copy } = await res.json();
+
+                setCompleted( copy.attributes.completed );
+
+                setCopies( currentList => {
+                    return currentList.map( c => {
+                        return c.id === copy.id ? copy : c;
+                    });
+                });
+
+            } else {
+                const { message } = await res.json();
+                setModal( <p>{ message }</p> );
+            }
+        } catch ( error ) {
+            setModal( <p>{ error.message }</p> );
+        }
     };
 
     const handleDelete = async () => {
@@ -58,11 +129,16 @@ const CopiesGridItem = ({ copy, setCopies }) => {
                     <span className="studio">{ copy.relationships.game.relationships.studio.name }</span>
                 </section>
                 <section className="copy-status">
-                    <span className="copy-rating">{ copy.attributes.rating }</span>
-                    <span className="copy-completed">{ copy.attributes.completed ? '✅' : '' }</span>
+                        <div className='rating'>
+                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 1 ) }>{ rating >= 1 ? '★' : '☆' }</span>
+                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 2 ) }>{ rating >= 2 ? '★' : '☆' }</span>
+                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 3 ) }>{ rating >= 3 ? '★' : '☆' }</span>
+                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 4 ) }>{ rating >= 4 ? '★' : '☆' }</span>
+                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 5 ) }>{ rating >= 5 ? '★' : '☆' }</span>
+                        </div>
+                    <span className="copy-completed" onClick={ handleCompleted }>{ copy.attributes.completed ? '✅' : '❌' }</span>
                 </section>
                 <section className="copy-management">
-                    <span onClick={ handleEdit }>✏️</span>
                     <span onClick={ handleDelete }>🗑️</span>
                 </section>
             </article>

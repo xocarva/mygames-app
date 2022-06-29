@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSetModal, useUser } from "../../hooks";
 import { validateName } from "../../utils/validateData";
@@ -11,6 +12,7 @@ const NewGenreForm = () => {
 
     const user = useUser();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const setModal = useSetModal();
 
     const [errorType, setErrorType] = useState('');
@@ -52,6 +54,11 @@ const NewGenreForm = () => {
           if( res.ok ) {
             setModal( <p>Genre created</p> );
             navigate(-1);
+
+          } else if( res.status === 401 ) {
+            dispatch({ type: 'logout' });
+            setModal( <p>Session expired</p> );
+            navigate( '/' );
 
           } else {
             const { message } = await res.json();

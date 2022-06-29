@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useSetModal, useUser } from "../../../hooks";
+import { Loading } from "../../../components";
+import { useFetch, useSetModal, useUser } from "../../../hooks";
 import { validateNameWithNumbers } from "../../../utils/validateData";
 import "./NewGameAdminForm.css";
 
@@ -17,11 +18,12 @@ const NewGameAdminForm = () => {
     const [errorType, setErrorType] = useState('');
     const [errorText, setErrorText] = useState('');
 
-    if( !user ) {
-        navigate('/');
-    }
-
     const [ title, setTitle ] = useState('');
+    const [ genre, setGenre ] = useState('');
+    const [ studio, setStudio ] = useState('');
+
+    const { data: genres } = useFetch( SERVER_URL + '/genres');
+    const { data: studios, isLoading } = useFetch( SERVER_URL + '/studios');
 
     const validateData = () => {
         if( !validateNameWithNumbers( title ) ) {
@@ -39,6 +41,8 @@ const NewGameAdminForm = () => {
 
         if ( !validateData() ) return;
 
+        const body = { title, genreId : genre, studioId: studio };
+
         try {
           const res = await fetch(SERVER_URL + '/games', {
             method: 'POST',
@@ -47,7 +51,7 @@ const NewGameAdminForm = () => {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + user?.token,
               },
-            body: JSON.stringify({ title }),
+            body: JSON.stringify( body ),
           });
 
           if( res.ok ) {
@@ -59,7 +63,7 @@ const NewGameAdminForm = () => {
             setModal( <p>Session expired</p> );
             navigate( '/' );
 
-        } else if( res.status === 422 ) {
+          } else if( res.status === 512 ) {
             setModal( <p>Game already exists</p> );
 
 
@@ -74,7 +78,8 @@ const NewGameAdminForm = () => {
     };
 
     return (
-            <form className="create-game-admin-form" onSubmit={ handleSubmit }>
+            isLoading ? <Loading />
+            : <form className="create-game-admin-form" onSubmit={ handleSubmit }>
                 <label htmlFor="creaute-game-admin-title">Title</label>
                 <input id="create-game-admin-title" type="text" name="title" value={ title }
                   onChange={ ( e ) => {
@@ -83,6 +88,24 @@ const NewGameAdminForm = () => {
                   }}
                 />
                 { errorType === 'title' && <p className='error-text'>{ errorText }</p> }
+                <select value={ genre } onChange={ ( e ) => setGenre( e.target.value ) }>
+                            { genres?.map( genre => {
+                                return(
+                                    <option key={ genre.id } value={ genre.id }>
+                                        { genre.name }
+                                    </option>
+                                )
+                            })}
+                        </select>
+                        <select value={ studio } onChange={ ( e ) => setStudio( e.target.value ) }>
+                            { studios?.map( studio => {
+                                return(
+                                    <option key={ studio.id } value={ studio.id }>
+                                        { studio.name }
+                                    </option>
+                                )
+                            })}
+                        </select>
                 <button className="create-game-admin-button">Create game</button>
             </form>
     );

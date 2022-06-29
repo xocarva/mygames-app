@@ -54,6 +54,7 @@ const CopiesFilters = ({ setUrl }) => {
         }
 
         setUrl( urlQuery );
+
     };
 
     const handleReset = ( e ) => {

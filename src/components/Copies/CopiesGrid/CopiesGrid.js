@@ -53,7 +53,7 @@ const CopiesGrid = ({ url }) => {
 
         loadData();
 
-    }, [ user ]);
+    }, [ user, url ]);
 
     const [ page, setPage ] = useState( 0 );
     const perPage = 10;
