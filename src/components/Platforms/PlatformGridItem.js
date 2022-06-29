@@ -32,10 +32,12 @@ const PlatformGridItem = ({ platform, setPlatforms }) => {
                     setPlatforms( currentList => {
                         return currentList.filter( p => p.id !== platform.id );
                     });
+
                 } else if( res.status === 401 ) {
                     dispatch({ type: 'logout' });
                     setModal( <p>Session expired</p> );
                     navigate( '/' );
+
                 } else {
                     setModal( <p>{ res.message }</p> );
                 }

@@ -39,7 +39,6 @@ const GenresGrid = () => {
                     setIsLoading( false );
 
                 } else if( res.status === 401 ) {
-
                     dispatch({ type: 'logout' });
                     setModal( <p>Session expired</p> );
                     navigate( '/' );

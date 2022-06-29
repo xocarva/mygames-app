@@ -32,10 +32,12 @@ const UserGridItem = ({ user, setUsers }) => {
                     setUsers( currentList => {
                         return currentList.filter( u => u.id !== user.id );
                     });
+
                 } else if( res.status === 401 ) {
                     dispatch({ type: 'logout' });
                     setModal( <p>Session expired</p> );
                     navigate( '/' );
+
                 } else {
                     setModal( <p>Something went wrong</p> );
                 }

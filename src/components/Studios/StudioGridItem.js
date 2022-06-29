@@ -32,10 +32,12 @@ const StudioGridItem = ({ studio, setStudios }) => {
                     setStudios( currentList => {
                         return currentList.filter( s => s.id !== studio.id );
                     });
+
                 } else if( res.status === 401 ) {
                     dispatch({ type: 'logout' });
                     setModal( <p>Session expired</p> );
                     navigate( '/' );
+
                 } else {
                     setModal( <p>{ res.message }</p> );
                 }

@@ -43,6 +43,12 @@ const CopiesGridItem = ({ copy, setCopies }) => {
                     });
                 });
 
+            } else if( res.status === 401 ) {
+
+                dispatch({ type: 'logout' });
+                setModal( <p>Session expired</p> );
+                navigate( '/' );
+
             } else {
                 const { message } = await res.json();
                 setModal( <p>{ message }</p> );
@@ -78,6 +84,12 @@ const CopiesGridItem = ({ copy, setCopies }) => {
                     });
                 });
 
+            } else if( res.status === 401 ) {
+
+                dispatch({ type: 'logout' });
+                setModal( <p>Session expired</p> );
+                navigate( '/' );
+
             } else {
                 const { message } = await res.json();
                 setModal( <p>{ message }</p> );
@@ -103,6 +115,7 @@ const CopiesGridItem = ({ copy, setCopies }) => {
                     setCopies( currentList => {
                         return currentList.filter( c => c.id !== copy.id );
                     });
+
                 } else if( res.status === 401 ) {
                     dispatch({ type: 'logout' });
                     setModal( <p>Session expired</p> );

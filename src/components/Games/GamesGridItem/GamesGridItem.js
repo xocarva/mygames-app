@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useSetModal, useUser } from "../../../hooks";
 import "./GamesGridItem.css";
 
@@ -8,6 +10,8 @@ const GamesGridItem = ({ game, platforms }) => {
 
     const user = useUser();
     const setModal = useSetModal();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [ platform, setPlatform ] = useState();
 
@@ -34,18 +38,25 @@ const GamesGridItem = ({ game, platforms }) => {
                 completed:false,
              }),
           });
+
           if( res.ok ) {
             setModal( <p>Game added to your collection</p> );
 
-          } else if( res.status === 422 ) {
-            setModal( <p>Game already added to your collection</p> );
+          } else if( res.status === 401 ) {
+              dispatch({ type: 'logout' });
+              setModal( <p>Session expired</p> );
+              navigate( '/' );
+
+          } else if( res.status === 512 ) {
+              setModal( <p>Game already added to your collection</p> );
 
           } else {
-            const { message } = await res.json();
-            setModal( <p>{ message }</p> );
+              const { message } = await res.json();
+              setModal( <p>{ message }</p> );
           }
+
         } catch ( error ) {
-          setModal( <p>{ error.message }</p> );
+            setModal( <p>{ error.message }</p> );
         }
     };
 

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import UserGridItem from "./UserGridItem";
 import "./UsersGrid.css";
 
-
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const UsersGrid = () => {
@@ -25,7 +24,7 @@ const UsersGrid = () => {
 
             setIsLoading( true );
             try {
-                const res = await fetch(SERVER_URL + '/users', {
+                const res = await fetch( SERVER_URL + '/users', {
                     headers: {
                         'Authorization': 'Bearer ' + user.token,
                         Accept:'application/json',
@@ -33,14 +32,12 @@ const UsersGrid = () => {
                     }
                 });
 
-
                 if ( res.ok ) {
                     const { data } = await res.json();
                     setUsers( data );
                     setIsLoading( false );
 
                 } else if( res.status === 401 ) {
-
                     dispatch({ type: 'logout' });
                     setModal( <p>Session expired</p> );
                     navigate( '/' );

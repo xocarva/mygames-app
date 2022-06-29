@@ -32,10 +32,12 @@ const GenreGridItem = ({ genre, setGenres }) => {
                     setGenres( currentList => {
                         return currentList.filter( u => u.id !== genre.id );
                     });
+
                 } else if( res.status === 401 ) {
                     dispatch({ type: 'logout' });
                     setModal( <p>Session expired</p> );
                     navigate( '/' );
+
                 } else {
                     setModal( <p>{ res.message }</p> );
                 }

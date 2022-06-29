@@ -8,16 +8,11 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 const Register = () => {
 
-    const user = useUser();
     const navigate = useNavigate();
     const setModal = useSetModal();
 
     const [errorType, setErrorType] = useState('');
     const [errorText, setErrorText] = useState('');
-
-    if( user ) {
-        navigate('/');
-    }
 
     const [ name, setName ] = useState('');
     const [ email, setEmail ] = useState('');

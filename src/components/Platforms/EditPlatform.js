@@ -104,6 +104,11 @@ const EditPlatform = ({ id, setPlatforms }) => {
                         });
                     });
 
+                } else if( res.status === 401 ) {
+                    dispatch({ type: 'logout' });
+                    setModal( <p>Session expired</p> );
+                    navigate( '/' );
+
                 } else {
                     const { message } = await res.json();
                     setModal( <p>{ message }</p> );

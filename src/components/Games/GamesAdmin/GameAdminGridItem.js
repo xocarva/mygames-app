@@ -32,10 +32,12 @@ const GameAdminGridItem = ({ game, setGames, genres, studios }) => {
                     setGames( currentList => {
                         return currentList.filter( g => g.id !== game.id );
                     });
+
                 } else if( res.status === 401 ) {
                     dispatch({ type: 'logout' });
                     setModal( <p>Session expired</p> );
                     navigate( '/' );
+
                 } else {
                     setModal( <p>{ res.message }</p> );
                 }

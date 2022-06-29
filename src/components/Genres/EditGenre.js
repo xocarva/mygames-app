@@ -90,7 +90,7 @@ const EditGenre = ({ id, setGenres }) => {
                         Accept:'application/json',
                             'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(body),
+                    body: JSON.stringify( body ),
                 });
 
                 if( res.ok ) {
@@ -103,6 +103,11 @@ const EditGenre = ({ id, setGenres }) => {
                             return g.id === id ? genre : g;
                         });
                     });
+
+                } else if( res.status === 401 ) {
+                    dispatch({ type: 'logout' });
+                    setModal( <p>Session expired</p> );
+                    navigate( '/' );
 
                 } else {
                     const { message } = await res.json();
