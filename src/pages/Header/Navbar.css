@@ -26,7 +26,7 @@
 }
 
 .burger-menu:hover span {
-    background-color: whitesmoke;
+    background-color: var(--header-color);
 }
 
 .burger-menu span:nth-child(1) {
@@ -102,7 +102,7 @@
 
 .nav-text a:hover {
     text-decoration: underline;
-    color: whitesmoke;
+    color: var(--header-color);
 }
 
 .nav-menu-items {

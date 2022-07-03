@@ -21,9 +21,8 @@
 .main-admin nav a {
     text-align: center;
     text-decoration: none;
-    color: var(--primary-color);
+    color: black;
     padding: 2rem;
-    width: 30rem;
     background-color: var(--gray-background);
 
 }

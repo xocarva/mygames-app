@@ -1,5 +1,4 @@
 .main-header {
-    color: var(--primary-color);
     background-color: var(--secondary-color);
     display: flex;
     align-items: center;
@@ -12,8 +11,13 @@
     text-align: center;
     flex-grow: 1;
     text-decoration: none;
-    color: var(--primary-color);
+    color: white;
 }
+
+.main-header span {
+    color: white;
+}
+
 
 .main-header a h1 {
     font-size: calc(2.4vw + 2.4vh + .6vmin);

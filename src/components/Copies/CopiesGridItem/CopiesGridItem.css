@@ -1,15 +1,19 @@
 .copies-grid-item {
-    background-color: var(--light-secondary-color);
+    background-color: var(--purple-background);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
     padding: 1rem;
-
+    box-shadow: 5px 5px 5px rgba(71, 70, 70, 0.618);
+    gap: 1rem;
 }
 
 .copies-grid-item .copy-header{
     text-align: center;
+    color: var(--header-color);
+    text-decoration: underline;
 }
 
 .copies-grid-item .copy-data {
@@ -18,16 +22,39 @@
     justify-content: space-around;
     align-items: center;
     flex-grow: 1;
+    gap: 1rem;
+    background-color: var(--light-secondary-color);
+    color: var(--primary-color);
+    width: 90%;
+    padding: 1rem;
+    border-radius: 5px;
 }
 
 .copies-grid-item .copy-status {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    color: var(--header-color);
 }
 
-.copies-grid-item .copy-management{
+.copies-grid-item .copy-management {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
+
+.copies-grid-item .copy-management span {
+    cursor: pointer;
+}
+
+.copies-grid-item .copy-status .copy-completed {
+    cursor: pointer;
+}
+
+.copies-grid-item .rating .rating-stars {
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+

@@ -50,24 +50,20 @@ const UserGridItem = ({ user, setUsers }) => {
     };
 
     return (
-        <>
-            <article className="users-grid-item" key={ user.id }>
-                <section className="users-grid-item-data">
-                    <h4>{user.name}</h4>
-                    <span>Email: { user.email }</span>
-                    <span>Admin: { user.admin ? 'Yes' : 'No' }</span>
-                    <div className="user-options">
-                        <span className="edit-user-button" title="Edit" onClick={ () => { setShowEdit( !showEdit ) }}>✏️</span>
-                        <span className="delete-user-button" title="Delete" onClick={ handleDelete }>🗑️</span>
-                    </div>
-                </section>
-                { showEdit &&
-                    <EditUser id={ user.id } setUsers={ setUsers } />
-                }
-            </article>
-
-        </>
-
+        <article className="users-grid-item" key={ user.id }>
+            <section className="users-grid-item-data">
+                <h4>{ user.name }</h4>
+                <span>Email: { user.email }</span>
+                <span>Admin: { user.admin ? 'Yes' : 'No' }</span>
+                <div className="user-options">
+                    <span className="edit-user-button" title="Edit" onClick={ () => { setShowEdit( !showEdit ) }}>✏️</span>
+                    <span className="delete-user-button" title="Delete" onClick={ handleDelete }>🗑️</span>
+                </div>
+            </section>
+            { showEdit &&
+                <EditUser id={ user.id } setUsers={ setUsers } />
+            }
+        </article>
     );
 
 };

@@ -137,22 +137,23 @@ const CopiesGridItem = ({ copy, setCopies }) => {
                     <h3 className="copy-title">{ copy.relationships.game.attributes.title }</h3>
                 </header>
                 <section className="copy-data">
-                    <span className="genre">{ copy.relationships.game.relationships.genre.name }</span>
-                    <span className="platform">{ copy.relationships.platform.name }</span>
-                    <span className="studio">{ copy.relationships.game.relationships.studio.name }</span>
+                    <span title="Genre" className="genre">{ copy.relationships.game.relationships.genre.name }</span>
+                    <span title="Platform" className="platform">{ copy.relationships.platform.name }</span>
+                    <span title="Studio" className="studio">{ copy.relationships.game.relationships.studio.name }</span>
                 </section>
                 <section className="copy-status">
-                        <div className='rating'>
-                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 1 ) }>{ rating >= 1 ? '★' : '☆' }</span>
-                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 2 ) }>{ rating >= 2 ? '★' : '☆' }</span>
-                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 3 ) }>{ rating >= 3 ? '★' : '☆' }</span>
-                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 4 ) }>{ rating >= 4 ? '★' : '☆' }</span>
-                            <span title="Rate" className='rating-stars' onClick={ () => handleRate( 5 ) }>{ rating >= 5 ? '★' : '☆' }</span>
-                        </div>
-                    <span className="copy-completed" onClick={ handleCompleted }>{ copy.attributes.completed ? '✅' : '❌' }</span>
+                    <div className='rating'>
+                        <span>Rating: </span>
+                        <span title="Rate" className='rating-stars' onClick={ () => handleRate( 1 ) }>{ rating >= 1 ? '★' : '☆' }</span>
+                        <span title="Rate" className='rating-stars' onClick={ () => handleRate( 2 ) }>{ rating >= 2 ? '★' : '☆' }</span>
+                        <span title="Rate" className='rating-stars' onClick={ () => handleRate( 3 ) }>{ rating >= 3 ? '★' : '☆' }</span>
+                        <span title="Rate" className='rating-stars' onClick={ () => handleRate( 4 ) }>{ rating >= 4 ? '★' : '☆' }</span>
+                        <span title="Rate" className='rating-stars' onClick={ () => handleRate( 5 ) }>{ rating >= 5 ? '★' : '☆' }</span>
+                    </div>
+                    <span title="Check / Uncheck" className="copy-completed" onClick={ handleCompleted }>Completed: { copy.attributes.completed ? '✅' : '❌' }</span>
                 </section>
                 <section className="copy-management">
-                    <span onClick={ handleDelete }>🗑️</span>
+                    <span title="Delete" onClick={ handleDelete }>🗑️</span>
                 </section>
             </article>
     );

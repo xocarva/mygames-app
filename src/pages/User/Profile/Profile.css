@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+.profile-main h1 {
+    color: var(--header-color);
+    text-decoration: underline;
+}
+
+
 .profile-main .profile-form {
     display: flex;
     flex-direction: column;
@@ -19,8 +25,6 @@
     padding: 0.3rem;
     width: 90vw;
     max-width: 30rem;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
 }
 
 .profile-form input:focus {

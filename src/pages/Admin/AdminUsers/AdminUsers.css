@@ -15,10 +15,9 @@
     justify-content: flex-end;
 }
 
-.new-user{
+.users-main .new-user{
     text-decoration: none;
-    background-color: var(--blue-background);
-    color: var(--primary-color);
+    background-color: var(--light-secondary-color);
     padding: 1rem;
     font-weight: bold;
     text-align: center;

@@ -6,7 +6,16 @@
     margin: 2rem;
 }
 
+.pagination .total-pages {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
 .pagination .pagination-buttons {
     display: flex;
     gap: 1rem;
+}
+
+.pagination .pagination-buttons button {
+    padding: 0.4rem 1.5rem;
 }

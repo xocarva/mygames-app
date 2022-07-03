@@ -10,6 +10,9 @@
 
 .games-grid-item .game-header{
     text-align: center;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    color: var(--primary-color);
 }
 
 .games-grid-item .game-data {
@@ -20,4 +23,23 @@
     flex-grow: 1;
     gap: 1rem;
 }
+
+.games-grid-item form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.games-grid-item form select {
+    background-color: white;
+    text-align: center;
+    padding: 0.2rem;
+}
+
+.games-grid-item form button {
+    padding: 0.2rem;
+}
+
+
 

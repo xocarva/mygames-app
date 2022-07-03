@@ -165,7 +165,7 @@ const Profile = () => {
 
     return (
         <main className="profile-main">
-            <h1>My Profile</h1>
+            { nameHolder && <h1>My Profile</h1> }
             { !nameHolder && <Loading />}
             { nameHolder &&
                 <form className="profile-form" onSubmit={ handleSubmit } >

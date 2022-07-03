@@ -56,8 +56,6 @@ const UsersGrid = () => {
 
     }, [ user ]);
 
-
-
     const [ page, setPage ] = useState( 0 );
     const perPage = 10;
     const totalPages = Math.ceil( users?.length / perPage );

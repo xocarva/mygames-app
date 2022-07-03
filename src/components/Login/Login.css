@@ -11,8 +11,6 @@
     width: 90vw;
     max-width: 30rem;
     padding: 0.5rem;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
 }
 
 .login-form input:focus {
@@ -44,6 +42,7 @@
 
 .login-form .login-button {
     cursor: pointer;
+    padding: 0.4rem 1.5rem;
 }
 
 

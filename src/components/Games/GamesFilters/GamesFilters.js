@@ -71,8 +71,11 @@ const GamesFilters = ({ setUrl }) => {
                         <input type="search" id="studio-filter" value={ studio } onChange={ e => setStudio( e.target.value ) }></input>
                     </li>
                 </ul>
-                <button type="submit">Filter</button>
-                <button className="reset-button" onClick={ handleReset }>Reset</button>
+                <div className="filters-buttons">
+                    <button type="submit">Filter</button>
+                    <button className="reset-button" onClick={ handleReset }>Reset</button>
+                </div>
+
             </form>
         </aside>
     );
