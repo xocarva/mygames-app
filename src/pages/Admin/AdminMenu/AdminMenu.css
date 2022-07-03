@@ -23,6 +23,7 @@
     text-decoration: none;
     color: var(--primary-color);
     padding: 2rem;
+    width: 30rem;
     background-color: var(--gray-background);
 
 }

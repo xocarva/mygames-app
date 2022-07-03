@@ -1,0 +1,24 @@
+.admin-nav {
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    gap: 1rem;
+    width: 90vw;
+}
+
+.admin-nav a {
+    flex-grow: 1;
+    padding: 1rem;
+    min-width: 15rem;
+    max-width: 25rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    background-color: var(--light-secondary-color);
+}
+
+.admin-nav a:hover {
+    background-color: var(--secondary-color);
+    font-weight: bold;
+}

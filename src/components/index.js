@@ -23,6 +23,7 @@ import GamesFilters from "./Games/GamesFilters/GamesFilters";
 import GameAdminGridItem from "./Games/GamesAdmin/GameAdminGridItem";
 import GamesAdminGrid from "./Games/GamesAdmin/GamesAdminGrid";
 import NewGameAdminForm from "./Games/GamesAdmin/NewGameAdminForm";
+import AdminNav from "./AdminNav/AdminNav";
 
 export {
     CopiesGridItem,
@@ -50,4 +51,5 @@ export {
     GameAdminGridItem,
     GamesAdminGrid,
     NewGameAdminForm,
+    AdminNav,
 };
