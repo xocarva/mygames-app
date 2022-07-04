@@ -17,14 +17,10 @@
 
 .users-main .new-user{
     text-decoration: none;
-    background-color: var(--light-secondary-color);
+    background-color: var(--secondary-color);
     padding: 1rem;
     font-weight: bold;
     text-align: center;
 }
 
-.new-user:hover{
-    background-color: var(--secondary-color);
-    color: whitesmoke;
-}
 

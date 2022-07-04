@@ -8,7 +8,7 @@ const CreateGenre = () => {
 
     return (
         <main className="create-genre-main">
-            <h2>Creatre a new genre</h2>
+            <h2>Create a new genre</h2>
             <NewGenreForm />
             <button className='back-button' onClick={() => navigate(-1)}>Back</button>
         </main>

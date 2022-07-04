@@ -28,7 +28,7 @@ const StudioGridItem = ({ studio, setStudios }) => {
                 });
 
                 if ( res.ok ) {
-                    window.alert( 'Genre deleted' );
+                    window.alert( 'Studio deleted' );
                     setStudios( currentList => {
                         return currentList.filter( s => s.id !== studio.id );
                     });

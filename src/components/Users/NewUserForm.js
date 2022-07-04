@@ -96,7 +96,7 @@ const NewUserForm = () => {
 
     return (
             <form className="create-user-form" onSubmit={ handleSubmit }>
-                <label htmlFor="creaute-user-name">Name</label>
+                <label htmlFor="create-user-name">Name</label>
                 <input id="create-user-name" type="text" name="name" value={ name }
                   onChange={ ( e ) => {
                     setName( e.target.value );

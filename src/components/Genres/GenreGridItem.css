@@ -3,13 +3,14 @@
     flex-direction: column;
 }
 .genres-grid-item-data {
-    background-color: var(--gray-background);
-    padding: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    background-color: var(--purple-background);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    justify-items: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
+    padding: 1rem;
+    overflow: hidden;
 }
 
 .genre-options {

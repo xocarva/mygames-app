@@ -8,7 +8,7 @@ const CreateAdminGame = () => {
 
     return (
         <main className="create-admin-game-main">
-            <h2>Creatre a new game</h2>
+            <h2>Create a new game</h2>
             <NewGameAdminForm />
             <button className='back-button' onClick={() => navigate(-1)}>Back</button>
         </main>

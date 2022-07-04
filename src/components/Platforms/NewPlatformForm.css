@@ -10,8 +10,6 @@
     width: 90vw;
     max-width: 30rem;
     padding: 0.5rem;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
 }
 
 .create-platform-form input:focus {

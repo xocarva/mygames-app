@@ -8,7 +8,7 @@ const CreateStudio = () => {
 
     return (
         <main className="create-studio-main">
-            <h2>Creatre a new studio</h2>
+            <h2>Create a new studio</h2>
             <NewStudioForm />
             <button className='back-button' onClick={() => navigate(-1)}>Back</button>
         </main>

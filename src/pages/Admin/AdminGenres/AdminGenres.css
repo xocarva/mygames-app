@@ -1,31 +1,27 @@
-.users-main {
+.genres-main {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
 }
-.users-main .users-title {
+.genres-main .genres-title {
     text-align: center;
     font-size: 2rem;
 }
 
-.new-user-container {
+.new-genre-container {
     width: 90vw;
     display: flex;
     justify-content: flex-end;
 }
 
-.new-user{
+.new-genre {
     text-decoration: none;
-    background-color: var(--blue-background);
+    background-color: var(--secondary-color);
     color: var(--primary-color);
     padding: 1rem;
     font-weight: bold;
     text-align: center;
 }
 
-.new-user:hover{
-    background-color: var(--secondary-color);
-    color: whitesmoke;
-}
 

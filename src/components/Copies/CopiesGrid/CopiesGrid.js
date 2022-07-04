@@ -62,6 +62,7 @@ const CopiesGrid = ({ url }) => {
     return (
         <section className="my-collection">
             <h2 className="my-collection-title">My Collection</h2>
+            <p>Rate, mark as completed or delete games from your collection</p>
             { isLoading && < Loading /> }
             { !isLoading && copies && copies.length > 0 &&
                 <section className="copies-grid">

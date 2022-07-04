@@ -10,12 +10,12 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
+    overflow: hidden;
 }
 
 .users-grid-item-data span {
     padding: 1rem;
 }
-
 
 .user-options {
     display: flex;

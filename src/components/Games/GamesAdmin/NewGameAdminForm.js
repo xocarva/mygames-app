@@ -80,7 +80,7 @@ const NewGameAdminForm = () => {
     return (
             isLoading ? <Loading />
             : <form className="create-game-admin-form" onSubmit={ handleSubmit }>
-                <label htmlFor="creaute-game-admin-title">Title</label>
+                <label htmlFor="create-game-admin-title">Title</label>
                 <input id="create-game-admin-title" type="text" name="title" value={ title }
                   onChange={ ( e ) => {
                     setTitle( e.target.value );
@@ -88,24 +88,26 @@ const NewGameAdminForm = () => {
                   }}
                 />
                 { errorType === 'title' && <p className='error-text'>{ errorText }</p> }
-                <select value={ genre } onChange={ ( e ) => setGenre( e.target.value ) }>
-                            { genres?.map( genre => {
-                                return(
-                                    <option key={ genre.id } value={ genre.id }>
-                                        { genre.name }
-                                    </option>
-                                )
-                            })}
-                        </select>
-                        <select value={ studio } onChange={ ( e ) => setStudio( e.target.value ) }>
-                            { studios?.map( studio => {
-                                return(
-                                    <option key={ studio.id } value={ studio.id }>
-                                        { studio.name }
-                                    </option>
-                                )
-                            })}
-                        </select>
+                <label htmlFor="create-game-admin-genre">Genre</label>
+                <select id="create-game-admin-genre" value={ genre } onChange={ ( e ) => setGenre( e.target.value ) }>
+                  { genres?.map( genre => {
+                      return(
+                          <option key={ genre.id } value={ genre.id }>
+                              { genre.name }
+                          </option>
+                      )
+                  })}
+                </select>
+                <label htmlFor="create-game-admin-studio">Studio</label>
+                <select id="create-game-admin-studio" value={ studio } onChange={ ( e ) => setStudio( e.target.value ) }>
+                    { studios?.map( studio => {
+                        return(
+                            <option key={ studio.id } value={ studio.id }>
+                                { studio.name }
+                            </option>
+                        )
+                    })}
+                </select>
                 <button className="create-game-admin-button">Create game</button>
             </form>
     );

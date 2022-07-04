@@ -3,8 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    background-color: var(--blue-background);
-    background: linear-gradient(180deg,var(--gray-background) 0%, var(--blue-background) 100% ); 
+    background: linear-gradient(180deg,var(--purple-background) 0%, var(--secondary-color) 100% ); 
     padding: 1rem;
 }
 
@@ -19,6 +18,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
     width: 100%;
 }
@@ -34,8 +34,6 @@
 .edit-game-admin-form label input {
     text-align: center;
     padding: 0.5rem;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
 }
 
 .edit-game-admin-form input:focus {
@@ -44,8 +42,15 @@
     box-shadow: 0 0 2px var(--secondary-color);
 }
 
+.edit-game-admin-form select {
+    text-align: center;
+    padding: 0.5rem;
+    align-self: flex-end;
+    background-color: white;
+}
+
 .edit-game-admin-form .error-text {
-    color: var(--secondary-color);
+    color: var(--primary-color);
     margin: 0;
 }
 

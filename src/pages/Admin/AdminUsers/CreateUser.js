@@ -8,7 +8,7 @@ const CreateUser = () => {
 
     return (
         <main className="create-user-main">
-            <h2>Creatre a new user</h2>
+            <h2>Create a new user</h2>
             <NewUserForm />
             <button className='back-button' onClick={() => navigate(-1)}>Back</button>
         </main>

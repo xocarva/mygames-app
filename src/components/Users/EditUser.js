@@ -202,11 +202,22 @@ const EditUser = ({ id, setUsers }) => {
                         </label>
                         <label htmlFor="edit-email">
                             Email
-                            <input id="edit-email" type="email" placeholder={ emailHolder } value={ email } onChange={ ( e ) => setEmail( e.target.value ) }/>
+                            <input id="edit-email" type="email" placeholder={ emailHolder } value={ email }
+                                onChange={ ( e ) => {
+                                    setEmail( e.target.value );
+                                    setErrorType('');
+
+                                }}
+                            />
                         </label>
                         <label htmlFor="edit-password">
                             Password
-                            <input id="edit-password" type="password" placeholder="********" value={ password } onChange={ ( e ) => setPassword( e.target.value ) }/>
+                            <input id="edit-password" type="password" placeholder="********" value={ password }
+                                onChange={ ( e ) => {
+                                    setPassword( e.target.value );
+                                    setErrorType('');
+                                }}
+                            />
                         </label>
                     </div>
                     { errorType && <p className='error-text'>{ errorText }</p> }

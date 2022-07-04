@@ -8,7 +8,7 @@ const CreatePlatform = () => {
 
     return (
         <main className="create-platform-main">
-            <h2>Creatre a new genre</h2>
+            <h2>Create a new platform</h2>
             <NewPlatformForm />
             <button className='back-button' onClick={() => navigate(-1)}>Back</button>
         </main>

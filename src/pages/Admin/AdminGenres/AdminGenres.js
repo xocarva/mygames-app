@@ -5,11 +5,11 @@ import "./AdminGenres.css";
 const AdminGenres = () => {
 
     return (
-        <main className="users-main">
+        <main className="genres-main">
             <AdminNav />
-            <h2 className="users-title">Genres</h2>
-            <div className="new-user-container">
-                <Link to="/admin/genres/create" className="new-user">New Genre ➕</Link>
+            <h2 className="genres-title">Genres</h2>
+            <div className="new-genre-container">
+                <Link to="/admin/genres/create" className="new-genre">New Genre ➕</Link>
             </div>
             <GenresGrid />
         </main>

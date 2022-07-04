@@ -50,7 +50,7 @@
 }
 
 .edit-user-form .error-text {
-    color: var(--secondary-color);
+    color: var(--primary-color);
     margin: 0;
 }
 

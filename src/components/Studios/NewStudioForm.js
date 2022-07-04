@@ -72,7 +72,7 @@ const NewStudioForm = () => {
 
     return (
             <form className="create-studio-form" onSubmit={ handleSubmit }>
-                <label htmlFor="creaute-studio-name">Name</label>
+                <label htmlFor="create-studio-name">Name</label>
                 <input id="create-studio-name" type="text" name="name" value={ name }
                   onChange={ ( e ) => {
                     setName( e.target.value );

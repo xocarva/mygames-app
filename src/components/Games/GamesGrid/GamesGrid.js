@@ -19,6 +19,7 @@ const GamesGrid = ({ url }) => {
     return (
         <section className="games">
             <h2 className="games-title">Games</h2>
+            <p>Add games to your collection</p>
             { isLoading && < Loading /> }
             { !isLoading && games && games.length > 0 &&
                 <section className="games-grid">

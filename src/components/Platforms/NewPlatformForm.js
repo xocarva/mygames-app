@@ -72,7 +72,7 @@ const NewPlatformForm = () => {
 
     return (
             <form className="create-platform-form" onSubmit={ handleSubmit }>
-                <label htmlFor="creaute-platform-name">Name</label>
+                <label htmlFor="create-platform-name">Name</label>
                 <input id="create-genre-name" type="text" name="name" value={ name }
                   onChange={ ( e ) => {
                     setName( e.target.value );

@@ -4,6 +4,11 @@
     max-width: 1500px;
 }
 
+.my-collection p {
+    text-align: center;
+    padding: 0 2rem;
+}
+
 .copies-grid {
     padding: 2rem;
     display: grid;
