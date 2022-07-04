@@ -23,7 +23,7 @@
     text-decoration: none;
     color: black;
     padding: 2rem;
-    background-color: var(--gray-background);
+    background-color: var(--purple-background);
 
 }
 .main-admin nav a:hover {
